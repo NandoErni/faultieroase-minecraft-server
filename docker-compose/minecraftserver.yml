@@ -1,0 +1,50 @@
+services:
+  mc:
+    image: itzg/minecraft-server
+    tty: true
+    stdin_open: true
+    restart: always
+    ports:
+      - "25565:25565"
+      - "8100:8100"
+    environment:
+      EULA: "TRUE"
+      MOTD: "§l§qFaultier Oase Official Minecraft Server!!§r"
+      ICON: https://nandoerni.com/logo.png
+      MAX_PLAYERS: 40
+      DIFFICULTY: normal
+      ENABLE_WHITELIST: "TRUE"
+      WHITELIST: "Sl00ther,VacuumMP,WimonTeder,kalsiluh"
+      OPS: Sl00ther, VacuumMP
+      MEMORY: "6G"
+      TYPE: FABRIC
+      VERSION: "1.21.10"
+      ENABLE_RCON: "true"
+      RCON_PASSWORD: mysecret
+      RCON_PORT: 25575
+    volumes:
+      - /srv/minecraft/data:/data
+    networks: 
+      - shared_minecraft_net
+
+  backup:
+    image: itzg/mc-backup
+    restart: always
+    environment:
+      BACKUP_CRON_EXPRESSION: "0 4 * * *"
+      PRUNE_BACKUPS_DAYS: 7
+      BACKUP_METHOD: tar
+      INITIAL_BACKUP: "true"
+      RCON_HOST: mc
+      RCON_PORT: 25575
+      RCON_PASSWORD: mysecret
+    volumes:
+      - /srv/minecraft/data:/data:ro
+      - /srv/minecraft/backups:/backups
+    networks: 
+      - shared_minecraft_net
+networks: 
+  shared_minecraft_net: 
+    external: true
+volumes:
+  mc: {}
