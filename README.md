@@ -1,2 +1,2 @@
 # faultieroase-minecraft-server
-Config files and Website for a Minecraft Server
+Running on [faultieroase.cloud](https://faultieroase.cloud)
