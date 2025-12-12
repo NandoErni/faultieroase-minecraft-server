@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Faultier Oase | Server Dashboard</title>
+
+    <link rel="icon" type="image/png" href="https://nandoerni.com/logo.png" />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&family=Press+Start+2P&display=swap");
+
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: #121212;
+        color: #e0e0e0;
+      }
+
+      h1,
+      h2,
+      h3 {
+        font-family: "Press Start 2P", cursive; /* Retro gaming font */
+      }
+
+      /* Sloth/Faultier Theme Colors */
+      .brand-green {
+        color: #84cc16;
+      }
+      .bg-brand-dark {
+        background-color: #1a1a1a;
+      }
+      .card-hover:hover {
+        transform: translateY(-5px);
+        transition: transform 0.3s ease;
+      }
+
+      /* Custom Scrollbar */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #1a1a1a;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #444;
+        border-radius: 4px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #84cc16;
+      }
+    </style>
+  </head>
+  <body class="antialiased min-h-screen flex flex-col">
+    <nav
+      class="bg-black/50 backdrop-blur-md border-b border-white/10 sticky top-0 z-50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-16">
+          <div class="flex items-center gap-3">
+            <img
+              src="https://nandoerni.com/logo.png"
+              alt="Faultier Oase Logo"
+              class="h-10 w-10 object-contain" />
+            <span class="text-white text-lg tracking-widest uppercase font-bold"
+              >Faultier Oase</span
+            >
+          </div>
+          <div class="text-sm text-gray-400">
+            <span
+              class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-900 text-gray-200">
+              <span
+                class="w-2 h-2 bg-gray-400 rounded-full mr-2 animate-pulse"></span>
+              Connecting...
+            </span>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <div class="relative bg-gray-900 overflow-hidden">
+      <div
+        class="absolute inset-0 opacity-60 bg-[url('https://faultieroase.cloud/bg_1.jpg')] bg-cover bg-center"></div>
+      <div
+        class="absolute inset-0 bg-gradient-to-t from-[#121212] via-transparent to-transparent"></div>
+
+      <div
+        class="relative max-w-7xl mx-auto py-24 px-4 sm:px-6 lg:px-8 text-center">
+        <h1
+          class="text-4xl md:text-6xl text-white mb-6 drop-shadow-lg leading-tight">
+          Welcome to the <br /><span class="text-lime-500">Faultier Oase</span>
+        </h1>
+        <p class="mt-4 text-xl text-gray-300 max-w-2xl mx-auto">
+          The best Minecraft Survival Server experience awaits you! Invitation
+          only!
+        </p>
+
+        <div class="mt-10 flex justify-center gap-4">
+          <a
+            href="https://modrinth.com/app"
+            download
+            class="group relative inline-flex items-center px-8 py-3 text-lg font-medium text-white bg-lime-600 rounded-lg hover:bg-lime-700 transition-colors shadow-lg shadow-lime-900/50">
+            <i class="fa-solid fa-download mr-3 group-hover:animate-bounce"></i>
+            Download Modrinth </a
+          ><a
+            href="https://faultieroase.cloud/bd5okfz.mrpack"
+            download
+            class="group relative inline-flex items-center px-8 py-3 text-lg font-medium text-white bg-lime-600 rounded-lg hover:bg-lime-700 transition-colors shadow-lg shadow-lime-900/50">
+            <i class="fa-solid fa-download mr-3 group-hover:animate-bounce"></i>
+            Download Modpack
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="py-4">
+      <div
+        class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-4">
+        <p class="text-white text-lg font-bold uppercase tracking-wider">
+          Connect Now:
+        </p>
+        <div
+          class="flex items-center bg-gray-800 rounded-lg p-2 pr-4 shadow-xl border border-lime-500/50">
+          <code
+            id="server-ip"
+            class="text-lime-400 text-xl font-mono px-3 py-1 bg-gray-900 rounded-l-md select-all">
+            mc.faultieroase.cloud
+          </code>
+          <button
+            onclick="copyToClipboard('mc.faultieroase.cloud', this)"
+            class="ml-3 text-sm text-lime-400 hover:text-white transition-colors flex items-center gap-1">
+            <i class="fa-regular fa-clipboard"></i>
+            <span id="copy-text">Copy IP</span>
+          </button>
+        </div>
+      </div>
+    </div>
+    <main
+      class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 w-full gap-8 grid grid-cols-1 lg:grid-cols-3">
+      <div class="lg:col-span-2 space-y-8">
+        <div
+          class="flex justify-between items-end border-b border-gray-800 pb-4">
+          <h2 class="text-2xl text-white flex items-center gap-3">
+            <i class="fa-solid fa-users text-lime-500"></i> Player Stats
+          </h2>
+          <button
+            onclick="fetchStats()"
+            class="text-sm text-lime-400 hover:text-lime-300 underline">
+            <i class="fa-solid fa-rotate-right"></i> Refresh
+          </button>
+        </div>
+
+        <div id="loading" class="text-center py-10">
+          <i
+            class="fa-solid fa-circle-notch fa-spin text-4xl text-lime-600"></i>
+          <p class="mt-4 text-gray-500">Loading player data...</p>
+        </div>
+
+        <div
+          id="player-grid"
+          class="grid grid-cols-1 md:grid-cols-2 gap-4 hidden"></div>
+
+        <div
+          id="error-msg"
+          class="hidden bg-red-900/20 border border-red-900 text-red-200 p-4 rounded-lg text-center">
+          Could not load stats. Is the API running?
+        </div>
+      </div>
+
+      <div class="space-y-8">
+        <div
+          id="leaderboard-container"
+          class="bg-gray-800 rounded-xl shadow-lg border border-gray-700">
+          <div
+            class="flex border-b border-gray-700 bg-gray-900/50 rounded-t-xl">
+            <button
+              id="tab-playtime"
+              data-tab="playtime"
+              class="tab-button w-1/3 py-3 text-sm font-bold uppercase transition-colors text-lime-400 border-b-2 border-lime-500">
+              <i class="fa-regular fa-clock mr-2"></i> Playtime
+            </button>
+            <button
+              id="tab-distance"
+              data-tab="distance"
+              class="tab-button w-1/3 py-3 text-sm font-bold uppercase transition-colors text-gray-400 hover:text-white border-b-2 border-transparent">
+              <i class="fa-solid fa-shoe-prints mr-2"></i> Distance
+            </button>
+            <button
+              id="tab-deaths"
+              data-tab="deaths"
+              class="tab-button w-1/3 py-3 text-sm font-bold uppercase transition-colors text-gray-400 hover:text-white border-b-2 border-transparent">
+              <i class="fa-solid fa-skull mr-2"></i> Deaths
+            </button>
+          </div>
+
+          <div class="p-0">
+            <div id="content-playtime" class="tab-content">
+              <ul
+                id="leaderboard-playtime"
+                class="divide-y divide-gray-700"></ul>
+            </div>
+
+            <div id="content-distance" class="tab-content hidden">
+              <ul
+                id="leaderboard-distance"
+                class="divide-y divide-gray-700"></ul>
+            </div>
+
+            <div id="content-deaths" class="tab-content hidden">
+              <ul id="leaderboard-deaths" class="divide-y divide-gray-700"></ul>
+            </div>
+          </div>
+        </div>
+        <div
+          class="bg-gray-800 rounded-xl overflow-hidden shadow-lg border border-gray-700">
+          <div
+            class="bg-gray-900 px-4 py-3 border-b border-gray-700 flex justify-between items-center">
+            <h3 class="text-white text-sm uppercase font-bold">
+              Live World Map
+            </h3>
+            <span class="text-xs text-gray-500"
+              ><i class="fa-solid fa-satellite"></i> Satellite</span
+            >
+          </div>
+          <div class="aspect-square bg-black relative group">
+            <iframe
+              src="https://api.faultieroase.cloud/map"
+              class="w-full h-full border-0 opacity-50 group-hover:opacity-100 transition-opacity"
+              title="Minecraft World Map">
+            </iframe>
+          </div>
+          <div class="p-4 bg-gray-800">
+            <a
+              href="https://api.faultieroase.cloud/map"
+              target="_blank"
+              class="block w-full text-center bg-gray-700 hover:bg-gray-600 text-white text-xs font-bold py-2 rounded transition">
+              Open Fullscreen Map
+            </a>
+          </div>
+        </div>
+
+        <div
+          class="bg-gradient-to-br from-lime-900/20 to-gray-800 border border-lime-900/30 rounded-xl p-6">
+          <h3 class="text-lime-400 mb-4 text-sm">Server Info</h3>
+          <ul class="space-y-3 text-sm text-gray-300">
+            <li class="flex justify-between">
+              <span>Version</span>
+              <span class="font-mono text-white">1.21.10</span>
+            </li>
+            <li class="flex justify-between">
+              <span>Mode</span>
+              <span class="font-mono text-white">Survival</span>
+            </li>
+            <li class="flex justify-between">
+              <span>Difficulty</span>
+              <span class="font-mono text-white">Normal</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </main>
+
+    <footer class="border-t border-gray-800 bg-black/40 py-8 mt-auto">
+      <div class="max-w-7xl mx-auto px-4 text-center text-gray-500 text-sm">
+        <p>
+          &copy; 2025 Faultier Oase. All blocks reserved. Webpage created by
+          Nando Erni
+        </p>
+      </div>
+    </footer>
+
+    <script>
+      // CONFIGURATION
+      const API_URL = "https://api.faultieroase.cloud"; // Base URL for both endpoints
+
+      // New global variable to hold the list of online player names
+      let onlinePlayerNames = [];
+
+      // Helper: Convert ticks to readable time
+      function formatPlaytime(ticks) {
+        if (!ticks) return "0h 0m";
+        const totalSeconds = ticks / 20;
+        const hours = Math.floor(totalSeconds / 3600);
+        const minutes = Math.floor((totalSeconds % 3600) / 60);
+        return `${hours}h ${minutes}m`;
+      }
+
+      // Helper: Convert cm to readable distance (in km and m)
+      function formatDistance(cm) {
+        if (!cm) return "0 m";
+        const totalMeters = cm / 100;
+
+        if (totalMeters >= 1000) {
+          // Show in kilometers if over 1km
+          const km = (totalMeters / 1000).toFixed(1);
+          return `${km} km`;
+        } else {
+          // Show in meters otherwise
+          return `${Math.floor(totalMeters)} m`;
+        }
+      }
+
+      // Helper: Creates a single Leaderboard List Item
+      function createLeaderboardItem(
+        player,
+        index,
+        statValue,
+        statLabel,
+        iconClass,
+        colorClass
+      ) {
+        const rankColor = (rank) => {
+          if (rank === 1) return "text-amber-400";
+          if (rank === 2) return "text-gray-400";
+          if (rank === 3) return "text-orange-400";
+          return "text-gray-500";
+        };
+
+        const avatarUrl = `https://mc-heads.net/avatar/${player.uuid}/32`;
+        const rank = index + 1;
+
+        return `
+              <li class="flex items-center justify-between p-3 transition hover:bg-gray-700/50">
+                  <div class="flex items-center gap-3">
+                      <span class="text-lg font-bold ${rankColor(
+                        rank
+                      )} w-6 text-center">#${rank}</span>
+                      <img 
+                          src="${avatarUrl}" 
+                          alt="${player.name}" 
+                          class="w-8 h-8 rounded-full bg-gray-900 border border-gray-600"
+                      >
+                      <span class="text-white font-medium">${player.name}</span>
+                  </div>
+                  <div class="flex items-center gap-2 text-sm">
+                      <i class="${iconClass} ${colorClass}"></i>
+                      <span class="font-bold text-white">${statValue}</span>
+                      <span class="text-gray-500 hidden sm:inline">${statLabel}</span>
+                  </div>
+              </li>
+          `;
+      }
+
+      // New function to process and display the Leaderboards
+      function renderLeaderboards(players) {
+        const playtimeList = document.getElementById("leaderboard-playtime");
+        const deathsList = document.getElementById("leaderboard-deaths");
+        const distanceList = document.getElementById("leaderboard-distance");
+
+        playtimeList.innerHTML = "";
+        deathsList.innerHTML = "";
+        distanceList.innerHTML = "";
+
+        // 1. Sort for Playtime
+        const sortedByPlaytime = [...players].sort(
+          (a, b) => b.playtime - a.playtime
+        );
+
+        // 2. Sort for Deaths (Most deaths first)
+        const sortedByDeaths = [...players].sort((a, b) => b.deaths - a.deaths);
+
+        // 3. Sort for Distance (Highest distance first)
+        const sortedByDistance = [...players].sort(
+          (a, b) => b.distance_cm - a.distance_cm
+        );
+
+        // Render Top 5 Playtime
+        sortedByPlaytime.slice(0, 5).forEach((player, index) => {
+          const playtimeFormatted = formatPlaytime(player.playtime);
+          playtimeList.innerHTML += createLeaderboardItem(
+            player,
+            index,
+            playtimeFormatted,
+            "Played",
+            "fa-regular fa-clock",
+            "text-lime-500"
+          );
+        });
+
+        // Render Top 5 Deaths
+        sortedByDeaths.slice(0, 5).forEach((player, index) => {
+          deathsList.innerHTML += createLeaderboardItem(
+            player,
+            index,
+            player.deaths,
+            "Deaths",
+            "fa-solid fa-skull",
+            "text-red-500"
+          );
+        });
+
+        // Render Top 5 Distance
+        sortedByDistance.slice(0, 5).forEach((player, index) => {
+          const distanceFormatted = formatDistance(player.distance_cm);
+          distanceList.innerHTML += createLeaderboardItem(
+            player,
+            index,
+            distanceFormatted,
+            "Walked",
+            "fa-solid fa-shoe-prints",
+            "text-blue-400"
+          );
+        });
+      }
+
+      // Helper: Create a Player Card HTML (Updated to show online status)
+      function createPlayerCard(player) {
+        const avatarUrl = `https://mc-heads.net/avatar/${player.uuid}/64`;
+
+        // Check if the player's name is in the live list
+        const isOnline = onlinePlayerNames.includes(player.name);
+
+        // Classes for the border and the online indicator dot
+        const borderClass = isOnline
+          ? "border-lime-400 ring-4 ring-lime-400/30"
+          : "border-gray-700";
+        const indicatorDot = isOnline
+          ? '<span class="absolute top-1 right-1 w-3 h-3 bg-lime-500 rounded-full animate-pulse shadow-lg shadow-lime-500/50" title="Online Now"></span>'
+          : "";
+
+        // Use the new formatDistance helper for the distance stat
+        const distanceFormatted = formatDistance(player.distance_cm);
+
+        return `
+          <div class="bg-gray-800 rounded-lg p-5 flex items-center gap-4 card-hover relative border ${borderClass} shadow-md transition-all">
+            ${indicatorDot}
+            <img 
+              src="${avatarUrl}" 
+              onerror="this.onerror=null; this.src='https://mc-heads.net/avatar/steve/64';" 
+              alt="${player.name}" 
+              class="w-16 h-16 rounded-md bg-gray-900 border-2 border-lime-600/50 object-cover"
+            >
+            <div class="flex-1">
+              <h4 class="text-white font-bold text-lg leading-none mb-1">${
+                player.name
+              }</h4>
+              <span class="text-xs text-gray-500 font-mono tracking-tighter opacity-50">${
+                player.uuid
+              }</span>
+              
+              <div class="mt-3 flex gap-4 text-sm">
+                <div class="flex items-center gap-1.5 text-gray-300" title="Playtime">
+                  <i class="fa-regular fa-clock text-lime-500"></i>
+                  <span>${formatPlaytime(player.playtime)}</span>
+                </div>
+                <div class="flex items-center gap-1.5 text-gray-300" title="Deaths">
+                  <i class="fa-solid fa-skull text-red-500"></i>
+                  <span>${player.deaths}</span>
+                </div>
+                <div class="flex items-center gap-1.5 text-gray-300" title="Distance Walked">
+                  <i class="fa-solid fa-shoe-prints text-blue-400"></i>
+                  <span>${distanceFormatted}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+      }
+
+      // NEW FUNCTION: Handle tab switching logic
+      function setupTabSwitching() {
+        const tabButtons = document.querySelectorAll(".tab-button");
+        const tabContents = document.querySelectorAll(".tab-content");
+
+        tabButtons.forEach((button) => {
+          button.addEventListener("click", () => {
+            const targetTab = button.dataset.tab;
+
+            // 1. Deactivate all buttons and content
+            tabButtons.forEach((btn) => {
+              btn.classList.remove("text-lime-400", "border-lime-500");
+              btn.classList.add("text-gray-400", "border-transparent");
+            });
+            tabContents.forEach((content) => {
+              content.classList.add("hidden");
+            });
+
+            // 2. Activate the clicked button and its content
+            button.classList.add("text-lime-400", "border-lime-500");
+            button.classList.remove("text-gray-400", "border-transparent");
+
+            document
+              .getElementById(`content-${targetTab}`)
+              .classList.remove("hidden");
+          });
+        });
+      }
+
+      // New function to fetch and display live server status
+      async function fetchStatus() {
+        const statusSpan = document.querySelector(
+          ".text-sm.text-gray-400 span"
+        ); // Targets the online/offline badge
+
+        try {
+          const response = await fetch(`${API_URL}/status`);
+          const statusData = await response.json();
+
+          if (statusData.online) {
+            // Update Badge to show Online Count
+            statusSpan.innerHTML = `
+                <span class="w-2 h-2 bg-green-400 rounded-full mr-2 animate-pulse"></span>
+                ${statusData.playerCount} / ${statusData.maxPlayers} Online
+              `;
+            statusSpan.classList.remove("bg-red-900/20", "text-red-200");
+            statusSpan.classList.add("bg-green-900", "text-green-200");
+
+            // Store online player names globally for use in fetchStats
+            onlinePlayerNames = statusData.onlineNames;
+          } else {
+            // Server Offline
+            statusSpan.innerHTML = `
+                <span class="w-2 h-2 bg-red-400 rounded-full mr-2"></span>
+                Offline
+              `;
+            statusSpan.classList.remove("bg-green-900", "text-green-200");
+            statusSpan.classList.add("bg-red-900/20", "text-red-200");
+            onlinePlayerNames = [];
+          }
+        } catch (error) {
+          console.error("Failed to fetch status:", error);
+          // Default to API Error status if the endpoint itself fails
+          statusSpan.innerHTML = `
+              <span class="w-2 h-2 bg-red-400 rounded-full mr-2"></span>
+              API Error
+            `;
+          statusSpan.classList.remove("bg-green-900", "text-green-200");
+          statusSpan.classList.add("bg-red-900/20", "text-red-200");
+          onlinePlayerNames = [];
+        }
+      }
+
+      async function fetchStats() {
+        const grid = document.getElementById("player-grid");
+        const loading = document.getElementById("loading");
+        const errorMsg = document.getElementById("error-msg");
+
+        // STEP 1: Fetch Live Status first to populate onlinePlayerNames
+        await fetchStatus();
+
+        // STEP 2: Fetch Persistent Stats
+        grid.innerHTML = "";
+        grid.classList.add("hidden");
+        loading.classList.remove("hidden");
+        errorMsg.classList.add("hidden");
+
+        try {
+          const response = await fetch(`${API_URL}/players`); // Use the new base URL
+          if (!response.ok) throw new Error("API Network response was not ok");
+
+          const players = await response.json();
+
+          // Sort players by playtime (highest first) for the main grid display
+          players.sort((a, b) => b.playtime - a.playtime);
+
+          if (players.length === 0) {
+            grid.innerHTML =
+              '<p class="text-gray-500 col-span-2 text-center">No players found in cache.</p>';
+          } else {
+            players.forEach((player) => {
+              // createPlayerCard uses the global onlinePlayerNames list
+              grid.innerHTML += createPlayerCard(player);
+            });
+          }
+
+          // RENDER LEADERBOARDS using the full player list
+          renderLeaderboards(players);
+
+          loading.classList.add("hidden");
+          grid.classList.remove("hidden");
+        } catch (error) {
+          console.error("Failed to fetch stats:", error);
+          loading.classList.add("hidden");
+          errorMsg.classList.remove("hidden");
+        }
+      }
+
+      // Initialize and set a refresh interval (e.g., every 30 seconds)
+      document.addEventListener("DOMContentLoaded", () => {
+        setupTabSwitching();
+        fetchStats();
+        // Refresh stats and status every 30 seconds
+        setInterval(fetchStats, 30000);
+      });
+    </script>
+  </body>
+</html>
