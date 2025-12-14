@@ -14,7 +14,6 @@ services:
       MAX_PLAYERS: 40
       DIFFICULTY: normal
       ENABLE_WHITELIST: "TRUE"
-      OPS: Sl00ther, VacuumMP
       MEMORY: "6G"
       TYPE: FABRIC
       MODRINTH_PROJECTS: chunky,fabric-api
