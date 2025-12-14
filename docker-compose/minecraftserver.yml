@@ -14,10 +14,10 @@ services:
       MAX_PLAYERS: 40
       DIFFICULTY: normal
       ENABLE_WHITELIST: "TRUE"
-      WHITELIST: "Sl00ther,VacuumMP,WimonTeder,kalsiluh"
       OPS: Sl00ther, VacuumMP
       MEMORY: "6G"
       TYPE: FABRIC
+      MODRINTH_PROJECTS: chunky,fabric-api
       VERSION: "1.21.10"
       ENABLE_RCON: "true"
       RCON_PASSWORD: mysecret
