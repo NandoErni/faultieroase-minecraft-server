@@ -687,7 +687,6 @@
           if (!response.ok) throw new Error("API Network response was not ok");
 
           const players = await response.json();
-
           // Sort players by playtime (highest first) for the main grid display
           players.sort((a, b) => b.playtime - a.playtime);
 
