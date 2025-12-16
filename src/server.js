@@ -35,7 +35,7 @@ const FOOD_CATEGORIES = {
     "minecraft:kelp",
     "minecraft:dried_kelp",
     "minecraft:pumpkin_seeds", // Edible but usually for planting
-    "minecraft:chorus_fruit"
+    "minecraft:chorus_fruit",
   ],
   // Contains dairy, eggs, or honey, but no meat/fish
   vegetarian: [
@@ -43,7 +43,7 @@ const FOOD_CATEGORIES = {
     "minecraft:milk_bucket",
     "minecraft:honey_bottle",
     "minecraft:cake",
-    "minecraft:pumpkin_pie"
+    "minecraft:pumpkin_pie",
   ],
   // Contains fish/aquatic life, but no land animal products
   pescetarian: [
@@ -52,7 +52,7 @@ const FOOD_CATEGORIES = {
     "minecraft:cooked_cod",
     "minecraft:cooked_salmon",
     "minecraft:pufferfish", // Toxic, but edible
-    "minecraft:tropical_fish" // Edible
+    "minecraft:tropical_fish", // Edible
   ],
   // Contains land animal meat
   meat: [
@@ -68,8 +68,8 @@ const FOOD_CATEGORIES = {
     "minecraft:cooked_rabbit",
     "minecraft:rabbit_stew", // Contains rabbit meat
     "minecraft:rotten_flesh", // Edible (undead meat)
-    "minecraft:spider_eye" // Edible (insect/arthropod)
-  ]
+    "minecraft:spider_eye", // Edible (insect/arthropod)
+  ],
 };
 
 function readStats(uuid) {
@@ -138,6 +138,7 @@ app.get("/players", (req, res) => {
     const playtimeTicks = customStats?.["minecraft:play_time"] ?? 0;
     const deaths = customStats?.["minecraft:deaths"] ?? 0;
     const walkOneCm = customStats?.["minecraft:walk_one_cm"] ?? 0;
+    const sprintOneCm = customStats?.["minecraft:sprint_one_cm"] ?? 0;
 
     const diet = determineDiet(stats);
 
@@ -146,8 +147,8 @@ app.get("/players", (req, res) => {
       name: u.name,
       playtime: playtimeTicks,
       deaths: deaths,
-      distance_cm: walkOneCm,
-      diet: diet
+      distance_cm: walkOneCm + sprintOneCm,
+      diet: diet,
     };
   });
 
