@@ -10,8 +10,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    />
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
     <style>
       @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&family=Press+Start+2P&display=swap");
@@ -83,27 +82,23 @@
   </head>
   <body class="antialiased min-h-screen flex flex-col">
     <nav
-      class="bg-black/50 backdrop-blur-md border-b border-white/10 sticky top-0 z-50"
-    >
+      class="bg-black/50 backdrop-blur-md border-b border-white/10 sticky top-0 z-50">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex items-center justify-between h-16">
           <div class="flex items-center gap-3">
             <img
               src="https://nandoerni.com/logo.png"
               alt="Faultier Oase Logo"
-              class="h-10 w-10 object-contain"
-            />
+              class="h-10 w-10 object-contain" />
             <span class="text-white text-lg tracking-widest uppercase font-bold"
               >Faultier Oase</span
             >
           </div>
           <div class="text-sm text-gray-400">
             <span
-              class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-900 text-gray-200"
-            >
+              class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-900 text-gray-200">
               <span
-                class="w-2 h-2 bg-gray-400 rounded-full mr-2 animate-pulse"
-              ></span>
+                class="w-2 h-2 bg-gray-400 rounded-full mr-2 animate-pulse"></span>
               Connecting...
             </span>
           </div>
@@ -113,18 +108,14 @@
 
     <div class="relative bg-gray-900 overflow-hidden">
       <div
-        class="absolute inset-0 opacity-60 bg-[url('https://faultieroase.cloud/bg_1.jpg')] bg-cover bg-center"
-      ></div>
+        class="absolute inset-0 opacity-60 bg-[url('https://faultieroase.cloud/bg_1.jpg')] bg-cover bg-center"></div>
       <div
-        class="absolute inset-0 bg-gradient-to-t from-[#121212] via-transparent to-transparent"
-      ></div>
+        class="absolute inset-0 bg-gradient-to-t from-[#121212] via-transparent to-transparent"></div>
 
       <div
-        class="relative max-w-7xl mx-auto py-24 px-4 sm:px-6 lg:px-8 text-center"
-      >
+        class="relative max-w-7xl mx-auto py-24 px-4 sm:px-6 lg:px-8 text-center">
         <h1
-          class="text-4xl md:text-6xl text-white mb-6 drop-shadow-lg leading-tight"
-        >
+          class="text-4xl md:text-6xl text-white mb-6 drop-shadow-lg leading-tight">
           Welcome to the <br /><span class="text-lime-500">Faultier Oase</span>
         </h1>
         <p class="mt-4 text-xl text-gray-300 max-w-2xl mx-auto">
@@ -136,15 +127,13 @@
           <a
             href="https://modrinth.com/app"
             download
-            class="group relative inline-flex items-center px-8 py-3 text-lg font-medium text-white bg-lime-600 rounded-lg hover:bg-lime-700 transition-colors shadow-lg shadow-lime-900/50"
-          >
+            class="group relative inline-flex items-center px-8 py-3 text-lg font-medium text-white bg-lime-600 rounded-lg hover:bg-lime-700 transition-colors shadow-lg shadow-lime-900/50">
             <i class="fa-solid fa-download mr-3 group-hover:animate-bounce"></i>
             Download Modrinth </a
           ><a
             href="https://faultieroase.cloud/bd5okfz.mrpack"
             download
-            class="group relative inline-flex items-center px-8 py-3 text-lg font-medium text-white bg-lime-600 rounded-lg hover:bg-lime-700 transition-colors shadow-lg shadow-lime-900/50"
-          >
+            class="group relative inline-flex items-center px-8 py-3 text-lg font-medium text-white bg-lime-600 rounded-lg hover:bg-lime-700 transition-colors shadow-lg shadow-lime-900/50">
             <i class="fa-solid fa-download mr-3 group-hover:animate-bounce"></i>
             Download Modpack
           </a>
@@ -153,24 +142,20 @@
     </div>
     <div class="py-4">
       <div
-        class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-4"
-      >
+        class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-4">
         <p class="text-white text-lg font-bold uppercase tracking-wider">
           Connect Now:
         </p>
         <div
-          class="flex items-center bg-gray-800 rounded-lg p-2 pr-4 shadow-xl border border-lime-500/50"
-        >
+          class="flex items-center bg-gray-800 rounded-lg p-2 pr-4 shadow-xl border border-lime-500/50">
           <code
             id="server-ip"
-            class="text-lime-400 text-xl font-mono px-3 py-1 bg-gray-900 rounded-l-md select-all"
-          >
+            class="text-lime-400 text-xl font-mono px-3 py-1 bg-gray-900 rounded-l-md select-all">
             mc.faultieroase.cloud
           </code>
           <button
             onclick="copyToClipboard('mc.faultieroase.cloud', this)"
-            class="ml-3 text-sm text-lime-400 hover:text-white transition-colors flex items-center gap-1"
-          >
+            class="ml-3 text-sm text-lime-400 hover:text-white transition-colors flex items-center gap-1">
             <i class="fa-regular fa-clipboard"></i>
             <span id="copy-text">Copy IP</span>
           </button>
@@ -178,39 +163,33 @@
       </div>
     </div>
     <main
-      class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 w-full gap-8 grid grid-cols-1 lg:grid-cols-3"
-    >
+      class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 w-full gap-8 grid grid-cols-1 lg:grid-cols-3">
       <div class="lg:col-span-2 space-y-8">
         <div
-          class="flex justify-between items-end border-b border-gray-800 pb-4"
-        >
+          class="flex justify-between items-end border-b border-gray-800 pb-4">
           <h2 class="text-2xl text-white flex items-center gap-3">
             <i class="fa-solid fa-users text-lime-500"></i> Player Stats
           </h2>
           <button
             onclick="fetchStats()"
-            class="text-sm text-lime-400 hover:text-lime-300 underline"
-          >
+            class="text-sm text-lime-400 hover:text-lime-300 underline">
             <i class="fa-solid fa-rotate-right"></i> Refresh
           </button>
         </div>
 
         <div id="loading" class="text-center py-10">
           <i
-            class="fa-solid fa-circle-notch fa-spin text-4xl text-lime-600"
-          ></i>
+            class="fa-solid fa-circle-notch fa-spin text-4xl text-lime-600"></i>
           <p class="mt-4 text-gray-500">Loading player data...</p>
         </div>
 
         <div
           id="player-grid"
-          class="grid grid-cols-1 md:grid-cols-2 gap-4 hidden"
-        ></div>
+          class="grid grid-cols-1 md:grid-cols-2 gap-4 hidden"></div>
 
         <div
           id="error-msg"
-          class="hidden bg-red-900/20 border border-red-900 text-red-200 p-4 rounded-lg text-center"
-        >
+          class="hidden bg-red-900/20 border border-red-900 text-red-200 p-4 rounded-lg text-center">
           Could not load stats. Is the API running?
         </div>
       </div>
@@ -218,37 +197,31 @@
       <div class="space-y-8">
         <div
           id="leaderboard-container"
-          class="bg-gray-800 rounded-xl shadow-lg border border-gray-700"
-        >
+          class="bg-gray-800 rounded-xl shadow-lg border border-gray-700">
           <div
-            class="flex border-b border-gray-700 bg-gray-900/50 rounded-t-xl"
-          >
+            class="flex border-b border-gray-700 bg-gray-900/50 rounded-t-xl">
             <button
               id="tab-playtime"
               data-tab="playtime"
-              class="tab-button w-1/4 py-3 text-xs font-bold uppercase transition-colors text-lime-400 border-b-2 border-lime-500"
-            >
+              class="tab-button w-1/4 py-3 text-xs font-bold uppercase transition-colors text-lime-400 border-b-2 border-lime-500">
               <i class="fa-regular fa-clock"></i> Playtime
             </button>
             <button
               id="tab-distance"
               data-tab="distance"
-              class="tab-button w-1/4 py-3 text-xs font-bold uppercase transition-colors text-gray-400 hover:text-white border-b-2 border-transparent"
-            >
+              class="tab-button w-1/4 py-3 text-xs font-bold uppercase transition-colors text-gray-400 hover:text-white border-b-2 border-transparent">
               <i class="fa-solid fa-shoe-prints"></i> Distance
             </button>
             <button
               id="tab-deaths"
               data-tab="deaths"
-              class="tab-button w-1/4 py-3 text-xs font-bold uppercase transition-colors text-gray-400 hover:text-white border-b-2 border-transparent"
-            >
+              class="tab-button w-1/4 py-3 text-xs font-bold uppercase transition-colors text-gray-400 hover:text-white border-b-2 border-transparent">
               <i class="fa-solid fa-skull"></i> Deaths
             </button>
             <button
               id="tab-diet"
               data-tab="diet"
-              class="tab-button w-1/4 py-3 text-xs font-bold uppercase transition-colors text-gray-400 hover:text-white border-b-2 border-transparent"
-            >
+              class="tab-button w-1/4 py-3 text-xs font-bold uppercase transition-colors text-gray-400 hover:text-white border-b-2 border-transparent">
               <i class="fa-solid fa-leaf"></i> Diet
             </button>
           </div>
@@ -257,15 +230,13 @@
             <div id="content-playtime" class="tab-content">
               <ul
                 id="leaderboard-playtime"
-                class="divide-y divide-gray-700"
-              ></ul>
+                class="divide-y divide-gray-700"></ul>
             </div>
 
             <div id="content-distance" class="tab-content hidden">
               <ul
                 id="leaderboard-distance"
-                class="divide-y divide-gray-700"
-              ></ul>
+                class="divide-y divide-gray-700"></ul>
             </div>
 
             <div id="content-deaths" class="tab-content hidden">
@@ -277,11 +248,9 @@
           </div>
         </div>
         <div
-          class="bg-gray-800 rounded-xl overflow-hidden shadow-lg border border-gray-700"
-        >
+          class="bg-gray-800 rounded-xl overflow-hidden shadow-lg border border-gray-700">
           <div
-            class="bg-gray-900 px-4 py-3 border-b border-gray-700 flex justify-between items-center"
-          >
+            class="bg-gray-900 px-4 py-3 border-b border-gray-700 flex justify-between items-center">
             <h3 class="text-white text-sm uppercase font-bold">
               Live World Map
             </h3>
@@ -293,24 +262,21 @@
             <iframe
               src="https://api.faultieroase.cloud/map"
               class="w-full h-full border-0 opacity-50 group-hover:opacity-100 transition-opacity"
-              title="Minecraft World Map"
-            >
+              title="Minecraft World Map">
             </iframe>
           </div>
           <div class="p-4 bg-gray-800">
             <a
               href="https://api.faultieroase.cloud/map"
               target="_blank"
-              class="block w-full text-center bg-gray-700 hover:bg-gray-600 text-white text-xs font-bold py-2 rounded transition"
-            >
+              class="block w-full text-center bg-gray-700 hover:bg-gray-600 text-white text-xs font-bold py-2 rounded transition">
               Open Fullscreen Map
             </a>
           </div>
         </div>
 
         <div
-          class="bg-gradient-to-br from-lime-900/20 to-gray-800 border border-lime-900/30 rounded-xl p-6"
-        >
+          class="bg-gradient-to-br from-lime-900/20 to-gray-800 border border-lime-900/30 rounded-xl p-6">
           <h3 class="text-lime-400 mb-4 text-sm">Server Info</h3>
           <ul class="space-y-3 text-sm text-gray-300">
             <li class="flex justify-between">
@@ -460,24 +426,28 @@
         dietList.innerHTML = ""; // Clear new list
 
         // 1. Sort for Playtime
-        const sortedByPlaytime = [...players].sort(
-          (a, b) => b.playtime - a.playtime
-        );
+        const sortedByPlaytime = [...players]
+          .filter((a) => a.playtime > 0)
+          .sort((a, b) => b.playtime - a.playtime);
 
         // 2. Sort for Deaths (Most deaths first)
-        const sortedByDeaths = [...players].sort((a, b) => b.deaths - a.deaths);
+        const sortedByDeaths = [...players]
+          .filter((a) => a.playtime > 0)
+          .sort((a, b) => a.deaths - b.deaths);
 
         // 3. Sort for Distance (Highest distance first)
-        const sortedByDistance = [...players].sort(
-          (a, b) => b.distance_cm - a.distance_cm
-        );
+        const sortedByDistance = [...players]
+          .filter((a) => a.playtime > 0)
+          .sort((a, b) => b.distance_cm - a.distance_cm);
 
         // 4. Sort for Diet (Highest rank first: Vegan 4 > Veggie 3 > Fish 2 > Meat 1)
-        const sortedByDiet = [...players].sort((a, b) => {
-          const rankA = getDietDisplay(a.diet).rank;
-          const rankB = getDietDisplay(b.diet).rank;
-          return rankB - rankA;
-        });
+        const sortedByDiet = [...players]
+          .filter((a) => a.playtime > 0)
+          .sort((a, b) => {
+            const rankA = getDietDisplay(a.diet).rank;
+            const rankB = getDietDisplay(b.diet).rank;
+            return rankB - rankA;
+          });
 
         // Render Top 5 Playtime
         sortedByPlaytime.slice(0, 5).forEach((player, index) => {
