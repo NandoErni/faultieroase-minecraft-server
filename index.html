@@ -271,9 +271,9 @@
                     Pig Rider #1
                   </p>
                   <div class="font-bold text-white text-sm record-name">
-                    Loading...
+                    No Record
                   </div>
-                  <div class="text-xs text-slate-400 record-value">---</div>
+                  <div class="text-xs text-slate-400 record-value">-</div>
                 </div>
               </div>
               <div
@@ -290,9 +290,9 @@
                     Captain #1
                   </p>
                   <div class="font-bold text-white text-sm record-name">
-                    Loading...
+                    No Record
                   </div>
-                  <div class="text-xs text-slate-400 record-value">---</div>
+                  <div class="text-xs text-slate-400 record-value">-</div>
                 </div>
               </div>
               <div
@@ -309,9 +309,9 @@
                     Annoyer #1
                   </p>
                   <div class="font-bold text-white text-sm record-name">
-                    Loading...
+                    No Record
                   </div>
-                  <div class="text-xs text-slate-400 record-value">---</div>
+                  <div class="text-xs text-slate-400 record-value">-</div>
                 </div>
               </div>
             </div>
@@ -452,7 +452,9 @@
 
         return `
           <div class="bg-slate-800 rounded-xl border ${
-            isOnline ? "border-lime-500" : "border-slate-700"
+            isOnline
+              ? "border-lime-500 shadow-[0_0_15px_rgba(132,204,22,0.15)]"
+              : "border-slate-700"
           } p-5 card-hover relative flex flex-col h-full">
             <div class="flex items-start justify-between mb-4">
               <div class="flex items-center gap-3">
@@ -520,15 +522,26 @@
       }
 
       function updateRecords(players) {
-        const findChamp = (key) =>
-          [...players].sort((a, b) => (b[key] || 0) - (a[key] || 0))[0];
+        // Updated sorting logic: only pick a champ if value > 0
+        const findChamp = (key) => {
+          const sorted = [...players].sort(
+            (a, b) => (b[key] || 0) - (a[key] || 0)
+          );
+          const top = sorted[0];
+          return top && (top[key] || 0) > 0 ? top : null;
+        };
+
         const setRecord = (id, champ, formatFn) => {
           const el = document.getElementById(id);
           if (champ) {
             el.querySelector(".record-name").innerText = champ.name;
             el.querySelector(".record-value").innerText = formatFn(champ);
+          } else {
+            el.querySelector(".record-name").innerText = "No Record";
+            el.querySelector(".record-value").innerText = "-";
           }
         };
+
         setRecord("record-pig", findChamp("pig_distance_cm"), (p) =>
           formatDistance(p.pig_distance_cm)
         );
@@ -588,6 +601,8 @@
 
           const statsRes = await fetch(`${API_URL}/players`);
           const players = await statsRes.json();
+
+          // Re-sort: Online first, then by playtime
           players.sort(
             (a, b) =>
               (onlinePlayerNames.includes(b.name) ? 1 : 0) -
@@ -600,6 +615,7 @@
           document.getElementById("loading").classList.add("hidden");
           grid.classList.remove("hidden");
         } catch (err) {
+          console.error(err);
           document.getElementById("error-msg").classList.remove("hidden");
         }
       }
