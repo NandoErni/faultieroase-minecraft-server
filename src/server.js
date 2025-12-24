@@ -139,6 +139,12 @@ app.get("/players", (req, res) => {
     const deaths = customStats?.["minecraft:deaths"] ?? 0;
     const walkOneCm = customStats?.["minecraft:walk_one_cm"] ?? 0;
     const sprintOneCm = customStats?.["minecraft:sprint_one_cm"] ?? 0;
+    const walkUnderWaterOneCm = customStats?.["minecraft:walk_under_water_one_cm"] ?? 0;
+    const walkOnWaterOneCm = customStats?.["minecraft:walk_on_water_one_cm"] ?? 0;
+    const swimOneCm = customStats?.["minecraft:swim_one_cm"] ?? 0;
+    const boatOneCm = customStats?.["minecraft:boat_one_cm"] ?? 0;
+    const pigOneCm = customStats?.["minecraft:pig_one_cm"] ?? 0;
+    const bellRings = customStats?.["minecraft:bell_ring"] ?? 0;
 
     const diet = determineDiet(stats);
 
@@ -147,8 +153,11 @@ app.get("/players", (req, res) => {
       name: u.name,
       playtime: playtimeTicks,
       deaths: deaths,
-      distance_cm: walkOneCm + sprintOneCm,
+      distance_cm: walkOneCm + sprintOneCm + walkUnderWaterOneCm + walkOnWaterOneCm + swimOneCm,
+      pig_distance_cm: pigOneCm,
+      boat_distance_cm: boatOneCm,
       diet: diet,
+      bell_rings: bellRings,
     };
   });
 
