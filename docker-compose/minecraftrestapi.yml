@@ -7,6 +7,7 @@ services:
       - "3000:3000"
     volumes:
       - /srv/minecraft/data/world/stats:/mcstats:ro
+      - /srv/minecraft/data/world/advancements:/mcadvancements:ro
       - /srv/minecraft/data/usercache.json:/usercache.json:ro
     networks:
       - shared_minecraft_net

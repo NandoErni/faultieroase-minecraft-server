@@ -1,6 +1,6 @@
 import express from "express";
 import cors from "cors";
-import fs from "fs";
+import fs, { read } from "fs";
 import path from "path";
 import { status } from "minecraft-server-util";
 
@@ -8,8 +8,9 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-const STATS_DIR = "/mcstats";
-const USERCACHE = "/usercache.json";
+const STATS_DIR = "./mcstats";
+const ADVANCEMENTS_DIR = "./mcadvancements";
+const USERCACHE = "./usercache.json";
 
 const MC_SERVER_ADDRESS = "mc";
 const MC_SERVER_PORT = 25565;
@@ -78,6 +79,12 @@ function readStats(uuid) {
   return JSON.parse(fs.readFileSync(file));
 }
 
+function readAdvancements(uuid) {
+  const file = path.join(ADVANCEMENTS_DIR, `${uuid}.json`);
+  if (!fs.existsSync(file)) return null;
+  return JSON.parse(fs.readFileSync(file));
+}
+
 function loadUserCache() {
   if (!fs.existsSync(USERCACHE)) return [];
   return JSON.parse(fs.readFileSync(USERCACHE));
@@ -100,6 +107,13 @@ function determineDiet(stats) {
   if (atePescetarian) return "pescetarian";
   if (ateVegetarian) return "vegetarian";
   return "vegan";
+}
+
+function getAdvancementNames(advancements) {
+  const names = Object.keys(advancements)
+    .filter(k => k.startsWith("minecraft:story") && advancements[k]["done"])
+    .map(k => k.split("/")[1])
+  return names
 }
 
 app.get("/status", async (req, res) => {
@@ -134,6 +148,7 @@ app.get("/players", (req, res) => {
   const players = users.map((u) => {
     const stats = readStats(u.uuid) || {};
     const customStats = stats?.stats?.["minecraft:custom"];
+    const advancements = readAdvancements(u.uuid) || []
 
     const playtimeTicks = customStats?.["minecraft:play_time"] ?? 0;
     const deaths = customStats?.["minecraft:deaths"] ?? 0;
@@ -147,6 +162,7 @@ app.get("/players", (req, res) => {
     const bellRings = customStats?.["minecraft:bell_ring"] ?? 0;
 
     const diet = determineDiet(stats);
+    const advancement_names = getAdvancementNames(advancements)
 
     return {
       uuid: u.uuid,
@@ -158,6 +174,7 @@ app.get("/players", (req, res) => {
       boat_distance_cm: boatOneCm,
       diet: diet,
       bell_rings: bellRings,
+      advancements: advancement_names,
     };
   });
 
