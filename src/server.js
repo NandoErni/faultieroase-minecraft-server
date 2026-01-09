@@ -73,6 +73,14 @@ const FOOD_CATEGORIES = {
   ],
 };
 
+const ADVANCEMENT_CATEGORIES = [
+  'minecraft:story',
+  'minecraft:nether',
+  'minecraft:end',
+  'minecraft:adventure',
+  'minecraft:husbandry'
+]
+
 function readStats(uuid) {
   const file = path.join(STATS_DIR, `${uuid}.json`);
   if (!fs.existsSync(file)) return null;
@@ -111,7 +119,7 @@ function determineDiet(stats) {
 
 function getAdvancementNames(advancements) {
   const names = Object.keys(advancements)
-    .filter(k => k.startsWith("minecraft:story") && advancements[k]["done"])
+    .filter(k => ADVANCEMENT_CATEGORIES.includes(k.split("/")[0]) && advancements[k]["done"])
     .map(k => k.split("/")[1])
   return names
 }
