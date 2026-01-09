@@ -449,7 +449,6 @@
           ? formatDistance(player.boat_distance_cm)
           : null;
         const bells = player.bell_rings ? player.bell_rings : null;
-        console.log(player);
         return `
           <div class="bg-slate-800 rounded-xl border ${
             isOnline
@@ -499,7 +498,7 @@
                 player.deaths
               }</span></div>
               <div class="stat-pill" title="Advancements"><i class="fa-solid fa-trophy text-yellow-500 w-4"></i><span class="font-mono font-bold text-white">${`${
-                player.advancements.length ?? 0
+                player.advancements?.length ?? 0
               }/125`}</span></div>
             </div>
 
