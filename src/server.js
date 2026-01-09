@@ -8,9 +8,9 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-const STATS_DIR = "./mcstats";
-const ADVANCEMENTS_DIR = "./mcadvancements";
-const USERCACHE = "./usercache.json";
+const STATS_DIR = "/mcstats";
+const ADVANCEMENTS_DIR = "/mcadvancements";
+const USERCACHE = "/usercache.json";
 
 const MC_SERVER_ADDRESS = "mc";
 const MC_SERVER_PORT = 25565;
