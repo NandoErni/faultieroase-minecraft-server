@@ -40,7 +40,6 @@ const FOOD_CATEGORIES = {
   ],
   // Contains dairy, eggs, or honey, but no meat/fish
   vegetarian: [
-    "minecraft:egg",
     "minecraft:milk_bucket",
     "minecraft:honey_bottle",
     "minecraft:cake",
