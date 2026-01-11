@@ -10,8 +10,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    />
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
     <style>
       @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Press+Start+2P&display=swap");
@@ -115,20 +114,27 @@
         gap: 12px;
         font-size: 0.85rem;
       }
+
+      /* Custom style for the advancement tooltip scrollbar */
+      .adv-scrollbar::-webkit-scrollbar {
+        width: 4px;
+      }
+      .adv-scrollbar::-webkit-scrollbar-thumb {
+        background: #fbbf24;
+        border-radius: 10px;
+      }
     </style>
   </head>
   <body class="antialiased min-h-screen flex flex-col">
     <nav
-      class="bg-black/50 backdrop-blur-md border-b border-white/5 sticky top-0 z-50"
-    >
+      class="bg-black/50 backdrop-blur-md border-b border-white/5 sticky top-0 z-50">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex items-center justify-between h-16">
           <div class="flex items-center gap-3">
             <img
               src="https://nandoerni.com/logo.png"
               alt="Logo"
-              class="h-8 w-8 object-contain"
-            />
+              class="h-8 w-8 object-contain" />
             <span
               class="text-white text-sm tracking-widest uppercase font-bold hidden sm:block"
               >Faultier Oase</span
@@ -136,8 +142,7 @@
           </div>
           <div
             id="status-pill"
-            class="flex items-center gap-2 px-3 py-1 rounded-full bg-slate-800 border border-slate-700 text-xs font-mono"
-          >
+            class="flex items-center gap-2 px-3 py-1 rounded-full bg-slate-800 border border-slate-700 text-xs font-mono">
             <div class="w-2 h-2 bg-gray-500 rounded-full animate-pulse"></div>
             <span class="text-gray-400">Connecting...</span>
           </div>
@@ -147,18 +152,14 @@
 
     <div class="relative bg-slate-900 border-b border-white/5">
       <div
-        class="absolute inset-0 opacity-40 bg-[url('https://faultieroase.cloud/bg_1.jpg')] bg-cover bg-center"
-      ></div>
+        class="absolute inset-0 opacity-40 bg-[url('https://faultieroase.cloud/bg_1.jpg')] bg-cover bg-center"></div>
       <div
-        class="absolute inset-0 bg-gradient-to-t from-[#0f172a] via-[#0f172a]/80 to-transparent"
-      ></div>
+        class="absolute inset-0 bg-gradient-to-t from-[#0f172a] via-[#0f172a]/80 to-transparent"></div>
 
       <div
-        class="relative max-w-7xl mx-auto py-20 px-4 sm:px-6 lg:px-8 text-center"
-      >
+        class="relative max-w-7xl mx-auto py-20 px-4 sm:px-6 lg:px-8 text-center">
         <h1
-          class="text-3xl md:text-5xl text-white mb-6 drop-shadow-xl leading-tight"
-        >
+          class="text-3xl md:text-5xl text-white mb-6 drop-shadow-xl leading-tight">
           Welcome to the <br /><span class="text-lime-500">Faultier Oase</span>
         </h1>
         <p class="mt-4 text-lg text-gray-300 max-w-2xl mx-auto">
@@ -168,34 +169,29 @@
 
         <div class="mt-8 flex justify-center">
           <div
-            class="flex items-stretch bg-black/60 backdrop-blur border border-lime-500/30 rounded-lg overflow-hidden shadow-2xl transition-all hover:border-lime-500/80 group"
-          >
+            class="flex items-stretch bg-black/60 backdrop-blur border border-lime-500/30 rounded-lg overflow-hidden shadow-2xl transition-all hover:border-lime-500/80 group">
             <code
               class="px-5 py-3 text-lime-400 font-mono text-lg flex items-center"
               >mc.faultieroase.cloud</code
             >
             <button
               onclick="copyToClipboard('mc.faultieroase.cloud', this)"
-              class="px-5 bg-lime-600 hover:bg-lime-500 text-black font-bold transition-colors flex items-center border-l border-lime-500/30"
-            >
+              class="px-5 bg-lime-600 hover:bg-lime-500 text-black font-bold transition-colors flex items-center border-l border-lime-500/30">
               <i class="fa-regular fa-copy"></i>
             </button>
           </div>
         </div>
 
         <div
-          class="mt-8 flex justify-center gap-4 text-xs font-bold uppercase tracking-wider text-slate-400"
-        >
+          class="mt-8 flex justify-center gap-4 text-xs font-bold uppercase tracking-wider text-slate-400">
           <a
             href="https://modrinth.com/app"
-            class="hover:text-lime-400 transition-colors flex items-center gap-2 px-4 py-2 bg-slate-800/50 rounded-full border border-slate-700 hover:border-lime-500/50"
-          >
+            class="hover:text-lime-400 transition-colors flex items-center gap-2 px-4 py-2 bg-slate-800/50 rounded-full border border-slate-700 hover:border-lime-500/50">
             <i class="fa-solid fa-cube"></i> Get Modrinth
           </a>
           <a
             href="https://faultieroase.cloud/bd5okfz.mrpack"
-            class="hover:text-lime-400 transition-colors flex items-center gap-2 px-4 py-2 bg-slate-800/50 rounded-full border border-slate-700 hover:border-lime-500/50"
-          >
+            class="hover:text-lime-400 transition-colors flex items-center gap-2 px-4 py-2 bg-slate-800/50 rounded-full border border-slate-700 hover:border-lime-500/50">
             <i class="fa-solid fa-download"></i> Modpack
           </a>
         </div>
@@ -206,64 +202,53 @@
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
         <div class="lg:col-span-8 space-y-6">
           <div
-            class="flex justify-between items-center border-b border-slate-800 pb-4"
-          >
+            class="flex justify-between items-center border-b border-slate-800 pb-4">
             <h2 class="text-xl text-white flex items-center gap-2 font-bold">
               <span
-                class="w-1 h-6 bg-lime-500 rounded-full inline-block"
-              ></span>
+                class="w-1 h-6 bg-lime-500 rounded-full inline-block"></span>
               Active Roster
             </h2>
             <button
               onclick="fetchStats()"
-              class="text-xs text-slate-400 hover:text-lime-400 transition-colors"
-            >
+              class="text-xs text-slate-400 hover:text-lime-400 transition-colors">
               <i class="fa-solid fa-rotate-right mr-1"></i> Refresh Data
             </button>
           </div>
 
           <div
             id="loading"
-            class="text-center py-12 bg-slate-800/50 rounded-xl border border-dashed border-slate-700"
-          >
+            class="text-center py-12 bg-slate-800/50 rounded-xl border border-dashed border-slate-700">
             <i
-              class="fa-solid fa-circle-notch fa-spin text-3xl text-lime-600 mb-3"
-            ></i>
+              class="fa-solid fa-circle-notch fa-spin text-3xl text-lime-600 mb-3"></i>
             <p class="text-slate-500 text-sm">Synchronizing player data...</p>
           </div>
 
           <div
             id="error-msg"
-            class="hidden bg-red-900/20 border border-red-900/50 text-red-200 p-4 rounded-lg text-center text-sm"
-          >
+            class="hidden bg-red-900/20 border border-red-900/50 text-red-200 p-4 rounded-lg text-center text-sm">
             Stats API unavailable.
           </div>
 
           <div
             id="player-grid"
-            class="grid grid-cols-1 md:grid-cols-2 gap-4 hidden"
-          ></div>
+            class="grid grid-cols-1 md:grid-cols-2 gap-4 hidden"></div>
         </div>
 
         <div class="lg:col-span-4 space-y-6">
           <div
-            class="bg-slate-800 rounded-xl border border-slate-700 overflow-hidden shadow-lg"
-          >
+            class="bg-slate-800 rounded-xl border border-slate-700 overflow-hidden shadow-lg">
             <div class="p-4 bg-slate-900/50 border-b border-slate-700">
               <h3
-                class="text-xs font-bold text-slate-400 uppercase tracking-wider"
-              >
+                class="text-xs font-bold text-slate-400 uppercase tracking-wider">
                 Server Records
               </h3>
             </div>
             <div class="p-4 space-y-4">
               <div
                 id="record-pig"
-                class="flex items-center gap-3 p-3 bg-pink-900/10 border border-pink-500/20 rounded-lg"
-              >
+                class="flex items-center gap-3 p-3 bg-pink-900/10 border border-pink-500/20 rounded-lg">
                 <div
-                  class="w-10 h-10 rounded-full bg-pink-500/20 flex items-center justify-center text-pink-400 text-lg"
-                >
+                  class="w-10 h-10 rounded-full bg-pink-500/20 flex items-center justify-center text-pink-400 text-lg">
                   <i class="fa-solid fa-paw"></i>
                 </div>
                 <div>
@@ -278,11 +263,9 @@
               </div>
               <div
                 id="record-boat"
-                class="flex items-center gap-3 p-3 bg-cyan-900/10 border border-cyan-500/20 rounded-lg"
-              >
+                class="flex items-center gap-3 p-3 bg-cyan-900/10 border border-cyan-500/20 rounded-lg">
                 <div
-                  class="w-10 h-10 rounded-full bg-cyan-500/20 flex items-center justify-center text-cyan-400 text-lg"
-                >
+                  class="w-10 h-10 rounded-full bg-cyan-500/20 flex items-center justify-center text-cyan-400 text-lg">
                   <i class="fa-solid fa-ship"></i>
                 </div>
                 <div>
@@ -297,11 +280,9 @@
               </div>
               <div
                 id="record-bell"
-                class="flex items-center gap-3 p-3 bg-yellow-900/10 border border-yellow-500/20 rounded-lg"
-              >
+                class="flex items-center gap-3 p-3 bg-yellow-900/10 border border-yellow-500/20 rounded-lg">
                 <div
-                  class="w-10 h-10 rounded-full bg-yellow-500/20 flex items-center justify-center text-yellow-400 text-lg"
-                >
+                  class="w-10 h-10 rounded-full bg-yellow-500/20 flex items-center justify-center text-yellow-400 text-lg">
                   <i class="fa-solid fa-bell"></i>
                 </div>
                 <div>
@@ -318,33 +299,26 @@
           </div>
 
           <div
-            class="bg-slate-800 rounded-xl border border-slate-700 overflow-hidden shadow-lg"
-          >
+            class="bg-slate-800 rounded-xl border border-slate-700 overflow-hidden shadow-lg">
             <div
-              class="p-4 bg-slate-900/50 border-b border-slate-700 flex justify-between items-center"
-            >
+              class="p-4 bg-slate-900/50 border-b border-slate-700 flex justify-between items-center">
               <h3
-                class="text-xs font-bold text-slate-400 uppercase tracking-wider"
-              >
+                class="text-xs font-bold text-slate-400 uppercase tracking-wider">
                 Top Veterans
               </h3>
               <i class="fa-regular fa-clock text-slate-500"></i>
             </div>
             <ul
               id="top-playtime-list"
-              class="divide-y divide-slate-700/50"
-            ></ul>
+              class="divide-y divide-slate-700/50"></ul>
           </div>
 
           <div
-            class="bg-slate-800 rounded-xl border border-slate-700 overflow-hidden shadow-lg group"
-          >
+            class="bg-slate-800 rounded-xl border border-slate-700 overflow-hidden shadow-lg group">
             <div
-              class="p-3 bg-slate-900/80 border-b border-slate-700 flex justify-between items-center"
-            >
+              class="p-3 bg-slate-900/80 border-b border-slate-700 flex justify-between items-center">
               <h3
-                class="text-xs font-bold text-slate-300 uppercase tracking-wider"
-              >
+                class="text-xs font-bold text-slate-300 uppercase tracking-wider">
                 Live Map
               </h3>
               <i class="fa-solid fa-satellite text-slate-500"></i>
@@ -353,11 +327,9 @@
               <iframe
                 src="https://api.faultieroase.cloud/map"
                 class="w-full h-full border-0 opacity-70 group-hover:opacity-100 transition-opacity duration-500"
-                title="Map"
-              ></iframe>
+                title="Map"></iframe>
               <div
-                class="absolute inset-0 flex items-center justify-center pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity"
-              >
+                class="absolute inset-0 flex items-center justify-center pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity">
                 <span
                   class="bg-black/70 text-white text-xs px-3 py-1 rounded backdrop-blur-sm"
                   >Interactive Map</span
@@ -368,8 +340,7 @@
               <a
                 href="https://api.faultieroase.cloud/map"
                 target="_blank"
-                class="block w-full text-center bg-slate-700 hover:bg-slate-600 text-white text-xs font-bold py-2 rounded transition"
-              >
+                class="block w-full text-center bg-slate-700 hover:bg-slate-600 text-white text-xs font-bold py-2 rounded transition">
                 Open Fullscreen
               </a>
             </div>
@@ -379,8 +350,7 @@
     </main>
 
     <footer
-      class="border-t border-slate-800 bg-black/40 py-8 mt-auto text-center text-slate-500 text-xs"
-    >
+      class="border-t border-slate-800 bg-black/40 py-8 mt-auto text-center text-slate-500 text-xs">
       <p>
         &copy; 2025 Faultier Oase. All blocks reserved. Webpage created by Nando
         Erni
@@ -438,6 +408,15 @@
         }, 2000);
       }
 
+      function formatAdvName(adv) {
+        return adv
+          .replace("minecraft:", "")
+          .split("/")
+          .pop()
+          .replace(/_/g, " ")
+          .replace(/\b\w/g, (l) => l.toUpperCase());
+      }
+
       function createPlayerCard(player) {
         const isOnline = onlinePlayerNames.includes(player.name);
         const avatarUrl = `https://mc-heads.net/avatar/${player.uuid}/64`;
@@ -449,6 +428,19 @@
           ? formatDistance(player.boat_distance_cm)
           : null;
         const bells = player.bell_rings ? player.bell_rings : null;
+
+        const advList =
+          player.advancements && player.advancements.length > 0
+            ? player.advancements
+                .map(
+                  (adv) =>
+                    `<li class="py-1 border-b border-white/5 last:border-0">${formatAdvName(
+                      adv
+                    )}</li>`
+                )
+                .join("")
+            : '<li class="text-slate-500 italic py-2 text-center">No advancements yet</li>';
+
         return `
           <div class="bg-slate-800 rounded-xl border ${
             isOnline
@@ -497,9 +489,26 @@
               <div class="stat-pill" title="Deaths"><i class="fa-solid fa-skull text-red-500 w-4"></i><span class="font-mono font-bold text-white">${
                 player.deaths
               }</span></div>
-              <div class="stat-pill" title="Advancements"><i class="fa-solid fa-trophy text-yellow-500 w-4"></i><span class="font-mono font-bold text-white">${`${
-                player.advancements?.length ?? 0
-              }/125`}</span></div>
+              
+              <div class="stat-pill group relative cursor-help" title="Click or hover to see list">
+                <i class="fa-solid fa-trophy text-yellow-500 w-4"></i>
+                <span class="font-mono font-bold text-white">${
+                  player.advancements?.length ?? 0
+                }/125</span>
+                
+                <div class="absolute bottom-[80%] left-1/2 -translate-x-1/2 pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-[60]">
+                  <div class="w-56 max-h-64 overflow-y-auto bg-slate-900 border border-slate-600 rounded-lg p-3 shadow-2xl adv-scrollbar">
+                    <div class="text-[10px] uppercase font-black text-yellow-500 mb-2 pb-1 border-b border-yellow-500/20 flex justify-between">
+                      <span>Advancements</span>
+                      <span>${player.advancements?.length ?? 0}</span>
+                    </div>
+                    <ul class="text-[10px] text-slate-300 space-y-0.5 list-none">
+                      ${advList}
+                    </ul>
+                  </div>
+                  <div class="absolute bottom-[2px] left-1/2 -translate-x-1/2 w-3 h-3 bg-slate-900 border-r border-b border-slate-600 rotate-45 z-[-1]"></div>
+                </div>
+              </div>
             </div>
 
             <div class="mt-auto pt-3 border-t border-slate-700/50 flex gap-4 text-xs text-slate-400">
@@ -524,7 +533,6 @@
       }
 
       function updateRecords(players) {
-        // Updated sorting logic: only pick a champ if value > 0
         const findChamp = (key) => {
           const sorted = [...players].sort(
             (a, b) => (b[key] || 0) - (a[key] || 0)
@@ -604,7 +612,6 @@
           const statsRes = await fetch(`${API_URL}/players`);
           const players = await statsRes.json();
 
-          // Re-sort: Online first, then by playtime
           players.sort(
             (a, b) =>
               (onlinePlayerNames.includes(b.name) ? 1 : 0) -
