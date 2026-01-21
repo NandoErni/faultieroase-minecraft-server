@@ -124,6 +124,27 @@
         backdrop-filter: blur(8px);
         transition: all 0.3s ease;
       }
+
+      /* Ender Event Styles */
+      .ender-event-card {
+        background: linear-gradient(135deg, #1e1b4b 0%, #4c1d95 100%);
+        border: 1px solid #a855f7;
+        position: relative;
+        overflow: hidden;
+      }
+      .ender-glow {
+        position: absolute;
+        top: -50%;
+        right: -10%;
+        width: 200px;
+        height: 200px;
+        background: radial-gradient(
+          circle,
+          rgba(168, 85, 247, 0.3) 0%,
+          transparent 70%
+        );
+        pointer-events: none;
+      }
     </style>
   </head>
   <body class="antialiased min-h-screen flex flex-col">
@@ -213,6 +234,45 @@
     </div>
 
     <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 w-full">
+      <div
+        class="mb-8 ender-event-card rounded-2xl p-6 shadow-2xl flex flex-col md:flex-row items-center justify-between gap-6 border-l-4 border-l-fuchsia-500">
+        <div class="ender-glow"></div>
+        <div class="flex items-center gap-5 relative z-10">
+          <div
+            class="w-16 h-16 bg-fuchsia-500/20 rounded-full flex items-center justify-center text-fuchsia-400 text-3xl shadow-[0_0_20px_rgba(217,70,239,0.3)]">
+            <i class="fa-solid fa-dragon animate-bounce"></i>
+          </div>
+          <div>
+            <h2 class="text-white font-bold text-xl md:text-2xl">
+              The End Awaits
+            </h2>
+            <p class="text-fuchsia-200/70 text-sm">
+              We will defeat the Ender Dragon together!
+            </p>
+            <div
+              class="flex items-center gap-2 mt-1 text-xs font-mono text-fuchsia-400">
+              <i class="fa-regular fa-calendar"></i> 13.02.2026
+              <i class="fa-regular fa-clock ml-2"></i> 20:30
+            </div>
+          </div>
+        </div>
+        <div
+          class="bg-black/40 backdrop-blur-sm border border-fuchsia-500/30 rounded-xl px-6 py-4 text-center min-w-[200px] relative z-10">
+          <p
+            class="text-[10px] uppercase font-black text-fuchsia-500 tracking-[0.2em] mb-1">
+            Time Remaining
+          </p>
+          <div
+            id="event-countdown"
+            class="font-mono text-2xl font-bold text-white leading-none">
+            00:00:00:00
+          </div>
+          <p class="text-[10px] text-fuchsia-300/50 mt-1 italic">
+            Prepare your armor...
+          </p>
+        </div>
+      </div>
+
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
         <div class="lg:col-span-8 space-y-6">
           <div
@@ -524,6 +584,34 @@
       const API_URL = "https://api.faultieroase.cloud";
       let onlinePlayerNames = [];
 
+      // EVENT COUNTDOWN SCRIPT
+      function updateCountdown() {
+        const eventDate = new Date("February 13, 2026 20:30:00").getTime();
+        const now = new Date().getTime();
+        const diff = eventDate - now;
+
+        const countdownEl = document.getElementById("event-countdown");
+
+        if (diff < 0) {
+          countdownEl.innerText = "LIVE NOW!";
+          countdownEl.classList.add("text-fuchsia-400", "animate-pulse");
+          return;
+        }
+
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor(
+          (diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+        );
+        const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        const secs = Math.floor((diff % (1000 * 60)) / 1000);
+
+        countdownEl.innerText = `${String(days).padStart(2, "0")}d : ${String(
+          hours
+        ).padStart(2, "0")}h : ${String(mins).padStart(2, "0")}m : ${String(
+          secs
+        ).padStart(2, "0")}s`;
+      }
+
       // MODAL CONTROLS
       function toggleUpdateModal(show) {
         const modal = document.getElementById("update-modal");
@@ -735,38 +823,6 @@
           findChamp("bell_rings"),
           (p) => p.bell_rings + " rings"
         );
-
-        const top5 = [...players]
-          .sort((a, b) => b.playtime - a.playtime)
-          .slice(0, 5);
-        document.getElementById("top-playtime-list").innerHTML = top5
-          .map(
-            (p, i) => `
-            <li class="px-4 py-3 flex items-center justify-between">
-                <div class="flex items-center gap-3">
-                    <span class="text-xs font-bold text-slate-600">#${
-                      i + 1
-                    }</span>
-                    <img src="https://mc-heads.net/avatar/${
-                      p.uuid
-                    }/24" class="w-6 h-6 rounded bg-slate-900 border ${
-              onlinePlayerNames.includes(p.name)
-                ? "border-lime-500"
-                : "border-slate-700"
-            }">
-                    <span class="text-sm font-medium ${
-                      onlinePlayerNames.includes(p.name)
-                        ? "text-lime-400"
-                        : "text-slate-300"
-                    }">${p.name}</span>
-                </div>
-                <span class="text-xs font-mono text-lime-500">${formatPlaytime(
-                  p.playtime
-                )}</span>
-            </li>
-        `
-          )
-          .join("");
       }
 
       async function fetchStats() {
@@ -803,6 +859,10 @@
       document.addEventListener("DOMContentLoaded", () => {
         fetchStats();
         setInterval(fetchStats, 30000);
+
+        // Start countdown
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
       });
     </script>
   </body>
