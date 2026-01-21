@@ -17,13 +17,13 @@ services:
       MEMORY: "6G"
       TYPE: FABRIC
       MODRINTH_PROJECTS: chunky,fabric-api
-      VERSION: "1.21.10"
+      VERSION: "1.21.11"
       ENABLE_RCON: "true"
       RCON_PASSWORD: mysecret
       RCON_PORT: 25575
     volumes:
       - /srv/minecraft/data:/data
-    networks: 
+    networks:
       - shared_minecraft_net
 
   backup:
@@ -40,10 +40,10 @@ services:
     volumes:
       - /srv/minecraft/data:/data:ro
       - /srv/minecraft/backups:/backups
-    networks: 
+    networks:
       - shared_minecraft_net
-networks: 
-  shared_minecraft_net: 
+networks:
+  shared_minecraft_net:
     external: true
 volumes:
   mc: {}
