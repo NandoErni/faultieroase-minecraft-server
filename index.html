@@ -43,7 +43,6 @@
         background: #84cc16;
       }
 
-      /* Card Hover */
       .card-hover {
         transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       }
@@ -53,7 +52,6 @@
         border-color: #84cc16;
       }
 
-      /* Diet Badges */
       .diet-badge {
         font-size: 0.65rem;
         font-weight: 700;
@@ -83,7 +81,6 @@
         border: 1px solid rgba(248, 113, 113, 0.2);
       }
 
-      /* Online Status Effects */
       .avatar-online {
         box-shadow: 0 0 15px rgba(132, 204, 22, 0.4);
         border: 2px solid #84cc16 !important;
@@ -114,14 +111,18 @@
         gap: 12px;
         font-size: 0.85rem;
       }
-
-      /* Custom style for the advancement tooltip scrollbar */
       .adv-scrollbar::-webkit-scrollbar {
         width: 4px;
       }
       .adv-scrollbar::-webkit-scrollbar-thumb {
         background: #fbbf24;
         border-radius: 10px;
+      }
+
+      /* Modal Background Blur */
+      #update-modal {
+        backdrop-filter: blur(8px);
+        transition: all 0.3s ease;
       }
     </style>
   </head>
@@ -140,11 +141,18 @@
               >Faultier Oase</span
             >
           </div>
-          <div
-            id="status-pill"
-            class="flex items-center gap-2 px-3 py-1 rounded-full bg-slate-800 border border-slate-700 text-xs font-mono">
-            <div class="w-2 h-2 bg-gray-500 rounded-full animate-pulse"></div>
-            <span class="text-gray-400">Connecting...</span>
+
+          <div class="flex items-center gap-3">
+            <div
+              class="px-2 py-1 rounded bg-lime-500/10 border border-lime-500/20 text-[10px] font-bold text-lime-500 uppercase tracking-tighter">
+              v1.21.11
+            </div>
+            <div
+              id="status-pill"
+              class="flex items-center gap-2 px-3 py-1 rounded-full bg-slate-800 border border-slate-700 text-xs font-mono">
+              <div class="w-2 h-2 bg-gray-500 rounded-full animate-pulse"></div>
+              <span class="text-gray-400">Connecting...</span>
+            </div>
           </div>
         </div>
       </div>
@@ -183,7 +191,7 @@
         </div>
 
         <div
-          class="mt-8 flex justify-center gap-4 text-xs font-bold uppercase tracking-wider text-slate-400">
+          class="mt-8 flex flex-wrap justify-center gap-4 text-xs font-bold uppercase tracking-wider text-slate-400">
           <a
             href="https://modrinth.com/app"
             class="hover:text-lime-400 transition-colors flex items-center gap-2 px-4 py-2 bg-slate-800/50 rounded-full border border-slate-700 hover:border-lime-500/50">
@@ -194,6 +202,12 @@
             class="hover:text-lime-400 transition-colors flex items-center gap-2 px-4 py-2 bg-slate-800/50 rounded-full border border-slate-700 hover:border-lime-500/50">
             <i class="fa-solid fa-download"></i> Modpack
           </a>
+
+          <button
+            onclick="toggleUpdateModal(true)"
+            class="text-lime-400 transition-colors flex items-center gap-2 px-4 py-2 bg-lime-500/10 rounded-full border border-lime-500/30 hover:bg-lime-500/20">
+            <i class="fa-solid fa-circle-info"></i> How to update?
+          </button>
         </div>
       </div>
     </div>
@@ -214,7 +228,6 @@
               <i class="fa-solid fa-rotate-right mr-1"></i> Refresh Data
             </button>
           </div>
-
           <div
             id="loading"
             class="text-center py-12 bg-slate-800/50 rounded-xl border border-dashed border-slate-700">
@@ -222,13 +235,11 @@
               class="fa-solid fa-circle-notch fa-spin text-3xl text-lime-600 mb-3"></i>
             <p class="text-slate-500 text-sm">Synchronizing player data...</p>
           </div>
-
           <div
             id="error-msg"
             class="hidden bg-red-900/20 border border-red-900/50 text-red-200 p-4 rounded-lg text-center text-sm">
             Stats API unavailable.
           </div>
-
           <div
             id="player-grid"
             class="grid grid-cols-1 md:grid-cols-2 gap-4 hidden"></div>
@@ -299,21 +310,6 @@
           </div>
 
           <div
-            class="bg-slate-800 rounded-xl border border-slate-700 overflow-hidden shadow-lg">
-            <div
-              class="p-4 bg-slate-900/50 border-b border-slate-700 flex justify-between items-center">
-              <h3
-                class="text-xs font-bold text-slate-400 uppercase tracking-wider">
-                Top Veterans
-              </h3>
-              <i class="fa-regular fa-clock text-slate-500"></i>
-            </div>
-            <ul
-              id="top-playtime-list"
-              class="divide-y divide-slate-700/50"></ul>
-          </div>
-
-          <div
             class="bg-slate-800 rounded-xl border border-slate-700 overflow-hidden shadow-lg group">
             <div
               class="p-3 bg-slate-900/80 border-b border-slate-700 flex justify-between items-center">
@@ -328,31 +324,189 @@
                 src="https://api.faultieroase.cloud/map"
                 class="w-full h-full border-0 opacity-70 group-hover:opacity-100 transition-opacity duration-500"
                 title="Map"></iframe>
-              <div
-                class="absolute inset-0 flex items-center justify-center pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity">
-                <span
-                  class="bg-black/70 text-white text-xs px-3 py-1 rounded backdrop-blur-sm"
-                  >Interactive Map</span
-                >
-              </div>
             </div>
             <div class="p-3 bg-slate-800">
               <a
                 href="https://api.faultieroase.cloud/map"
                 target="_blank"
-                class="block w-full text-center bg-slate-700 hover:bg-slate-600 text-white text-xs font-bold py-2 rounded transition">
-                Open Fullscreen
-              </a>
+                class="block w-full text-center bg-slate-700 hover:bg-slate-600 text-white text-xs font-bold py-2 rounded transition"
+                >Open Fullscreen</a
+              >
             </div>
           </div>
         </div>
       </div>
     </main>
 
+    <div
+      id="update-modal"
+      class="fixed inset-0 z-[100] flex items-center justify-center p-4 hidden">
+      <div
+        class="absolute inset-0 bg-black/80"
+        onclick="toggleUpdateModal(false)"></div>
+      <div
+        class="relative bg-slate-900 border border-slate-700 w-full max-w-2xl max-h-[90vh] overflow-hidden rounded-2xl shadow-2xl flex flex-col">
+        <div
+          class="p-6 border-b border-slate-800 flex justify-between items-center bg-slate-800/50">
+          <div>
+            <h2 class="text-white font-bold text-xl flex items-center gap-3">
+              <i class="fa-solid fa-wrench text-lime-500"></i> Client Update
+              Guide
+            </h2>
+            <p class="text-slate-400 text-xs mt-1">
+              Current Version: 1.21.11 | Fabric: 0.18.4
+            </p>
+          </div>
+          <button
+            onclick="toggleUpdateModal(false)"
+            class="text-slate-400 hover:text-white transition-colors">
+            <i class="fa-solid fa-xmark text-2xl"></i>
+          </button>
+        </div>
+
+        <div class="p-6 overflow-y-auto space-y-8 adv-scrollbar">
+          <div class="space-y-3">
+            <div class="flex items-center gap-3">
+              <span
+                class="w-8 h-8 rounded-lg bg-lime-600 text-black flex items-center justify-center font-bold"
+                >1</span
+              >
+              <h3 class="font-bold text-white">Open Instance Settings</h3>
+            </div>
+            <p class="text-sm text-slate-400 ml-11">
+              Open the Modpack instance for "Faultier Oase Session" in your
+              launcher.
+            </p>
+            <img
+              src="path/to/step1.png"
+              class="w-full rounded-lg border border-slate-700 ml-11 max-w-[calc(100%-2.75rem)]"
+              alt="Step 1" />
+          </div>
+
+          <div class="space-y-3">
+            <div class="flex items-center gap-3">
+              <span
+                class="w-8 h-8 rounded-lg bg-lime-600 text-black flex items-center justify-center font-bold"
+                >2</span
+              >
+              <h3 class="font-bold text-white">Go to Installation</h3>
+            </div>
+            <img
+              src="path/to/step2.png"
+              class="w-full rounded-lg border border-slate-700 ml-11 max-w-[calc(100%-2.75rem)]"
+              alt="Step 2" />
+          </div>
+
+          <div class="space-y-3">
+            <div class="flex items-center gap-3">
+              <span
+                class="w-8 h-8 rounded-lg bg-lime-600 text-black flex items-center justify-center font-bold"
+                >3</span
+              >
+              <h3 class="font-bold text-white">Select Game Version 1.21.11</h3>
+            </div>
+            <img
+              src="path/to/step3.png"
+              class="w-full rounded-lg border border-slate-700 ml-11 max-w-[calc(100%-2.75rem)]"
+              alt="Step 3" />
+          </div>
+
+          <div class="space-y-3">
+            <div class="flex items-center gap-3">
+              <span
+                class="w-8 h-8 rounded-lg bg-lime-600 text-black flex items-center justify-center font-bold"
+                >4</span
+              >
+              <h3 class="font-bold text-white">Select Fabric Version 0.18.4</h3>
+            </div>
+            <img
+              src="path/to/step4.png"
+              class="w-full rounded-lg border border-slate-700 ml-11 max-w-[calc(100%-2.75rem)]"
+              alt="Step 4" />
+          </div>
+
+          <div class="space-y-3">
+            <div class="flex items-center gap-3">
+              <span
+                class="w-8 h-8 rounded-lg bg-lime-600 text-black flex items-center justify-center font-bold"
+                >5</span
+              >
+              <h3 class="font-bold text-white">Click Install</h3>
+            </div>
+            <img
+              src="path/to/step5.png"
+              class="w-full rounded-lg border border-slate-700 ml-11 max-w-[calc(100%-2.75rem)]"
+              alt="Step 5" />
+          </div>
+
+          <div class="space-y-3">
+            <div class="flex items-center gap-3">
+              <span
+                class="w-8 h-8 rounded-lg bg-lime-600 text-black flex items-center justify-center font-bold"
+                >6</span
+              >
+              <h3 class="font-bold text-white">Refresh & Update Mods</h3>
+            </div>
+            <p class="text-sm text-slate-400 ml-11">
+              In the Mod overview, refresh and update all mods to their latest
+              compatible versions.
+            </p>
+            <img
+              src="path/to/step6.png"
+              class="w-full rounded-lg border border-slate-700 ml-11 max-w-[calc(100%-2.75rem)]"
+              alt="Step 6" />
+          </div>
+
+          <div class="space-y-3">
+            <div class="flex items-center gap-3">
+              <span
+                class="w-8 h-8 rounded-lg bg-red-600 text-white flex items-center justify-center font-bold"
+                >7</span
+              >
+              <h3 class="font-bold text-white">Disable Specific Mods</h3>
+            </div>
+            <ul
+              class="text-sm text-slate-400 ml-11 list-disc list-inside space-y-1">
+              <li>Enchantment Descriptions</li>
+              <li>Prickle</li>
+            </ul>
+            <img
+              src="path/to/step7.png"
+              class="w-full rounded-lg border border-slate-700 ml-11 max-w-[calc(100%-2.75rem)]"
+              alt="Step 7" />
+          </div>
+
+          <div class="space-y-3">
+            <div class="flex items-center gap-3">
+              <span
+                class="w-8 h-8 rounded-lg bg-red-600 text-white flex items-center justify-center font-bold"
+                >8</span
+              >
+              <h3 class="font-bold text-white">Delete "yesmod"</h3>
+            </div>
+            <p class="text-sm text-slate-400 ml-11">
+              Completely delete the <b>yesmod</b> file from your mods folder.
+            </p>
+            <img
+              src="path/to/step8.png"
+              class="w-full rounded-lg border border-slate-700 ml-11 max-w-[calc(100%-2.75rem)]"
+              alt="Step 8" />
+          </div>
+
+          <div
+            class="p-4 bg-lime-500/10 border border-lime-500/20 rounded-xl text-center">
+            <p class="text-lime-400 font-bold text-sm">
+              You're all set! Restart your game and enjoy.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <footer
       class="border-t border-slate-800 bg-black/40 py-8 mt-auto text-center text-slate-500 text-xs">
       <p>
-        &copy; 2025 Faultier Oase. All blocks reserved. Webpage created by Nando
+        &copy; 2026 Faultier Oase. All blocks reserved. Webpage created by Nando
         Erni
       </p>
     </footer>
@@ -360,6 +514,23 @@
     <script>
       const API_URL = "https://api.faultieroase.cloud";
       let onlinePlayerNames = [];
+
+      // MODAL CONTROLS
+      function toggleUpdateModal(show) {
+        const modal = document.getElementById("update-modal");
+        if (show) {
+          modal.classList.remove("hidden");
+          document.body.style.overflow = "hidden"; // Prevent scrolling background
+        } else {
+          modal.classList.add("hidden");
+          document.body.style.overflow = "auto";
+        }
+      }
+
+      // Close modal on Escape key
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") toggleUpdateModal(false);
+      });
 
       function formatPlaytime(ticks) {
         return ticks ? `${Math.floor(ticks / 20 / 3600)}h` : "0h";
@@ -478,7 +649,6 @@
                 </div>
               </div>
             </div>
-
             <div class="grid grid-cols-2 gap-2 mb-4">
               <div class="stat-pill" title="Playtime"><i class="fa-regular fa-clock text-lime-500 w-4"></i><span class="font-mono font-bold text-white">${formatPlaytime(
                 player.playtime
@@ -489,28 +659,23 @@
               <div class="stat-pill" title="Deaths"><i class="fa-solid fa-skull text-red-500 w-4"></i><span class="font-mono font-bold text-white">${
                 player.deaths
               }</span></div>
-              
               <div class="stat-pill group relative cursor-help" title="Click or hover to see list">
                 <i class="fa-solid fa-trophy text-yellow-500 w-4"></i>
                 <span class="font-mono font-bold text-white">${
                   player.advancements?.length ?? 0
                 }/125</span>
-                
                 <div class="absolute bottom-[80%] left-1/2 -translate-x-1/2 pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-[60]">
                   <div class="w-56 max-h-64 overflow-y-auto bg-slate-900 border border-slate-600 rounded-lg p-3 shadow-2xl adv-scrollbar">
                     <div class="text-[10px] uppercase font-black text-yellow-500 mb-2 pb-1 border-b border-yellow-500/20 flex justify-between">
                       <span>Advancements</span>
                       <span>${player.advancements?.length ?? 0}</span>
                     </div>
-                    <ul class="text-[10px] text-slate-300 space-y-0.5 list-none">
-                      ${advList}
-                    </ul>
+                    <ul class="text-[10px] text-slate-300 space-y-0.5 list-none">${advList}</ul>
                   </div>
                   <div class="absolute bottom-[2px] left-1/2 -translate-x-1/2 w-3 h-3 bg-slate-900 border-r border-b border-slate-600 rotate-45 z-[-1]"></div>
                 </div>
               </div>
             </div>
-
             <div class="mt-auto pt-3 border-t border-slate-700/50 flex gap-4 text-xs text-slate-400">
                 ${
                   pigDist
@@ -540,7 +705,6 @@
           const top = sorted[0];
           return top && (top[key] || 0) > 0 ? top : null;
         };
-
         const setRecord = (id, champ, formatFn) => {
           const el = document.getElementById(id);
           if (champ) {
@@ -551,7 +715,6 @@
             el.querySelector(".record-value").innerText = "-";
           }
         };
-
         setRecord("record-pig", findChamp("pig_distance_cm"), (p) =>
           formatDistance(p.pig_distance_cm)
         );
@@ -611,7 +774,6 @@
 
           const statsRes = await fetch(`${API_URL}/players`);
           const players = await statsRes.json();
-
           players.sort(
             (a, b) =>
               (onlinePlayerNames.includes(b.name) ? 1 : 0) -
