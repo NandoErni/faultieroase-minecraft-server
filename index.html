@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -85,6 +85,12 @@
         box-shadow: 0 0 15px rgba(132, 204, 22, 0.4);
         border: 2px solid #84cc16 !important;
       }
+
+      .avatar-slayer {
+        box-shadow: 0 0 12px rgba(168, 85, 247, 0.4);
+        border: 1px solid #a855f7 !important;
+      }
+
       .online-text-glimmer {
         animation: glimmer 2s infinite;
         font-weight: 800;
@@ -119,13 +125,11 @@
         border-radius: 10px;
       }
 
-      /* Modal Background Blur */
       #update-modal {
         backdrop-filter: blur(8px);
         transition: all 0.3s ease;
       }
 
-      /* Ender Event Styles */
       .ender-event-card {
         background: linear-gradient(135deg, #1e1b4b 0%, #4c1d95 100%);
         border: 1px solid #a855f7;
@@ -235,41 +239,60 @@
 
     <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 w-full">
       <div
-        class="mb-8 ender-event-card rounded-2xl p-6 shadow-2xl flex flex-col md:flex-row items-center justify-between gap-6 border-l-4 border-l-fuchsia-500">
+        class="mb-12 ender-event-card rounded-2xl overflow-hidden shadow-2xl border-l-4 border-l-fuchsia-500">
         <div class="ender-glow"></div>
-        <div class="flex items-center gap-5 relative z-10">
-          <div
-            class="w-16 h-16 bg-fuchsia-500/20 rounded-full flex items-center justify-center text-fuchsia-400 text-3xl shadow-[0_0_20px_rgba(217,70,239,0.3)]">
-            <i class="fa-solid fa-dragon animate-bounce"></i>
-          </div>
-          <div>
-            <h2 class="text-white font-bold text-xl md:text-2xl">
-              The End Awaits
-            </h2>
-            <p class="text-fuchsia-200/70 text-sm">
-              We will defeat the Ender Dragon together!
+        <div
+          class="relative z-10 p-6 md:p-8 flex flex-col lg:flex-row gap-8 items-center">
+          <div class="flex-1 space-y-4">
+            <div class="flex items-center gap-4">
+              <div
+                class="w-14 h-14 bg-fuchsia-500/20 rounded-full flex items-center justify-center text-fuchsia-400 text-2xl shadow-[0_0_20px_rgba(217,70,239,0.3)]">
+                <i class="fa-solid fa-crown animate-pulse"></i>
+              </div>
+              <div>
+                <h2 class="text-white font-bold text-xl md:text-3xl">
+                  The Dragon Has Fallen
+                </h2>
+                <p class="text-fuchsia-200/70 text-sm font-medium">
+                  A legendary victory for the Faultier Oase survivors.
+                </p>
+              </div>
+            </div>
+            <p class="text-slate-300 text-sm leading-relaxed max-w-xl">
+              On February 13th, 2026, our bravest explorers ventured into the
+              darkness and emerged victorious. The Ender Dragon is no more, and
+              the gateway to the outer islands stands open for all who dare to
+              cross.
             </p>
             <div
-              class="flex items-center gap-2 mt-1 text-xs font-mono text-fuchsia-400">
-              <i class="fa-regular fa-calendar"></i> 13.02.2026
-              <i class="fa-regular fa-clock ml-2"></i> 20:30
+              class="flex items-center gap-4 text-xs font-mono text-fuchsia-400 bg-black/20 self-start px-3 py-1.5 rounded-lg border border-fuchsia-500/20">
+              <span
+                ><i class="fa-regular fa-calendar mr-1"></i> DATE OF CONQUEST:
+                13.02.2026</span
+              >
             </div>
           </div>
-        </div>
-        <div
-          class="bg-black/40 backdrop-blur-sm border border-fuchsia-500/30 rounded-xl px-6 py-4 text-center min-w-[200px] relative z-10">
-          <p
-            class="text-[10px] uppercase font-black text-fuchsia-500 tracking-[0.2em] mb-1">
-            Time Remaining
-          </p>
-          <div
-            id="event-countdown"
-            class="font-mono text-2xl font-bold text-white leading-none">
-            00:00:00:00
+
+          <div class="flex-shrink-0 w-full lg:w-3/5 group relative">
+            <div
+              class="absolute -inset-1 bg-gradient-to-r from-fuchsia-600 to-purple-600 rounded-xl blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
+            <div class="relative">
+              <img
+                src="https://faultieroase.cloud/ender.png"
+                alt="Faultier Oase Victory Squad"
+                class="rounded-xl border border-white/10 shadow-2xl w-full object-cover transition-transform duration-500 group-hover:scale-[1.01]" />
+              <div
+                class="absolute inset-0 rounded-xl bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity"></div>
+              <div
+                class="absolute bottom-4 left-4 right-4 flex justify-between items-end">
+                <span
+                  class="text-[10px] text-white/80 font-bold uppercase tracking-[0.3em] drop-shadow-md"
+                  >Victory at the Portal</span
+                >
+                <i class="fa-solid fa-camera text-white/40 text-xs"></i>
+              </div>
+            </div>
           </div>
-          <p class="text-[10px] text-fuchsia-300/50 mt-1 italic">
-            Prepare your armor...
-          </p>
         </div>
       </div>
 
@@ -433,140 +456,10 @@
               >
               <h3 class="font-bold text-white">Open Instance Settings</h3>
             </div>
-            <p class="text-sm text-slate-400 ml-11">
-              Open the Modpack instance for "Faultier Oase Session" in your
-              launcher.
-            </p>
             <img
               src="https://faultieroase.cloud/update/step1.jpeg"
               class="w-full rounded-lg border border-slate-700 ml-11 max-w-[calc(100%-2.75rem)]"
               alt="Step 1" />
-          </div>
-
-          <div class="space-y-3">
-            <div class="flex items-center gap-3">
-              <span
-                class="w-8 h-8 rounded-lg bg-lime-600 text-black flex items-center justify-center font-bold"
-                >2</span
-              >
-              <h3 class="font-bold text-white">Go to Installation</h3>
-            </div>
-            <img
-              src="https://faultieroase.cloud/update/step2.jpeg"
-              class="w-full rounded-lg border border-slate-700 ml-11 max-w-[calc(100%-2.75rem)]"
-              alt="Step 2" />
-          </div>
-
-          <div class="space-y-3">
-            <div class="flex items-center gap-3">
-              <span
-                class="w-8 h-8 rounded-lg bg-lime-600 text-black flex items-center justify-center font-bold"
-                >3</span
-              >
-              <h3 class="font-bold text-white">Select Game Version 1.21.11</h3>
-            </div>
-            <img
-              src="https://faultieroase.cloud/update/step3.jpeg"
-              class="w-full rounded-lg border border-slate-700 ml-11 max-w-[calc(100%-2.75rem)]"
-              alt="Step 3" />
-          </div>
-
-          <div class="space-y-3">
-            <div class="flex items-center gap-3">
-              <span
-                class="w-8 h-8 rounded-lg bg-lime-600 text-black flex items-center justify-center font-bold"
-                >4</span
-              >
-              <h3 class="font-bold text-white">Select Fabric Version 0.18.4</h3>
-            </div>
-            <img
-              src="https://faultieroase.cloud/update/step4.jpeg"
-              class="w-full rounded-lg border border-slate-700 ml-11 max-w-[calc(100%-2.75rem)]"
-              alt="Step 4" />
-          </div>
-
-          <div class="space-y-3">
-            <div class="flex items-center gap-3">
-              <span
-                class="w-8 h-8 rounded-lg bg-lime-600 text-black flex items-center justify-center font-bold"
-                >5</span
-              >
-              <h3 class="font-bold text-white">Click Install</h3>
-            </div>
-            <img
-              src="https://faultieroase.cloud/update/step5.jpeg"
-              class="w-full rounded-lg border border-slate-700 ml-11 max-w-[calc(100%-2.75rem)]"
-              alt="Step 5" />
-          </div>
-
-          <div class="space-y-3">
-            <div class="flex items-center gap-3">
-              <span
-                class="w-8 h-8 rounded-lg bg-lime-600 text-black flex items-center justify-center font-bold"
-                >6</span
-              >
-              <h3 class="font-bold text-white">Refresh & Update Mods</h3>
-            </div>
-            <p class="text-sm text-slate-400 ml-11">
-              In the Mod overview, refresh and update all mods to their latest
-              compatible versions.
-            </p>
-            <img
-              src="https://faultieroase.cloud/update/step6.jpeg"
-              class="w-full rounded-lg border border-slate-700 ml-11 max-w-[calc(100%-2.75rem)]"
-              alt="Step 6" />
-            <img
-              src="https://faultieroase.cloud/update/step6_2.jpeg"
-              class="w-full rounded-lg border border-slate-700 ml-11 max-w-[calc(100%-2.75rem)]"
-              alt="Step 6" />
-          </div>
-
-          <div class="space-y-3">
-            <div class="flex items-center gap-3">
-              <span
-                class="w-8 h-8 rounded-lg bg-red-600 text-white flex items-center justify-center font-bold"
-                >7</span
-              >
-              <h3 class="font-bold text-white">Disable Specific Mods</h3>
-            </div>
-            <ul
-              class="text-sm text-slate-400 ml-11 list-disc list-inside space-y-1">
-              <li>Enchantment Descriptions</li>
-              <li>Prickle</li>
-            </ul>
-            <img
-              src="https://faultieroase.cloud/update/step7.jpeg"
-              class="w-full rounded-lg border border-slate-700 ml-11 max-w-[calc(100%-2.75rem)]"
-              alt="Step 7" />
-            <img
-              src="https://faultieroase.cloud/update/step7_2.jpeg"
-              class="w-full rounded-lg border border-slate-700 ml-11 max-w-[calc(100%-2.75rem)]"
-              alt="Step 7" />
-          </div>
-
-          <div class="space-y-3">
-            <div class="flex items-center gap-3">
-              <span
-                class="w-8 h-8 rounded-lg bg-red-600 text-white flex items-center justify-center font-bold"
-                >8</span
-              >
-              <h3 class="font-bold text-white">Delete "Model Gap Fix"</h3>
-            </div>
-            <p class="text-sm text-slate-400 ml-11">
-              Completely delete the <b>Model Gap Fix</b> file from your mods
-              folder.
-            </p>
-            <img
-              src="https://faultieroase.cloud/update/step8.jpeg"
-              class="w-full rounded-lg border border-slate-700 ml-11 max-w-[calc(100%-2.75rem)]"
-              alt="Step 8" />
-          </div>
-
-          <div
-            class="p-4 bg-lime-500/10 border border-lime-500/20 rounded-xl text-center">
-            <p class="text-lime-400 font-bold text-sm">
-              You're all set! Restart your game and enjoy.
-            </p>
           </div>
         </div>
       </div>
@@ -584,50 +477,29 @@
       const API_URL = "https://api.faultieroase.cloud";
       let onlinePlayerNames = [];
 
-      // EVENT COUNTDOWN SCRIPT
-      function updateCountdown() {
-        const eventDate = new Date("February 13, 2026 20:30:00").getTime();
-        const now = new Date().getTime();
-        const diff = eventDate - now;
+      // The Hall of Fame members
+      const DRAGON_SLAYERS = [
+        "Sl00ther",
+        "HopKopf",
+        "VacuumMP",
+        "xdMichelle",
+        "leFxre",
+        "nikipuk",
+        "kalsiluh",
+        "WimonTeder",
+        "KaiDerBecher",
+      ];
 
-        const countdownEl = document.getElementById("event-countdown");
-
-        if (diff < 0) {
-          countdownEl.innerText = "LIVE NOW!";
-          countdownEl.classList.add("text-fuchsia-400", "animate-pulse");
-          return;
-        }
-
-        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-        const hours = Math.floor(
-          (diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-        );
-        const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-        const secs = Math.floor((diff % (1000 * 60)) / 1000);
-
-        countdownEl.innerText = `${String(days).padStart(2, "0")}d : ${String(
-          hours
-        ).padStart(2, "0")}h : ${String(mins).padStart(2, "0")}m : ${String(
-          secs
-        ).padStart(2, "0")}s`;
-      }
-
-      // MODAL CONTROLS
       function toggleUpdateModal(show) {
         const modal = document.getElementById("update-modal");
         if (show) {
           modal.classList.remove("hidden");
-          document.body.style.overflow = "hidden"; // Prevent scrolling background
+          document.body.style.overflow = "hidden";
         } else {
           modal.classList.add("hidden");
           document.body.style.overflow = "auto";
         }
       }
-
-      // Close modal on Escape key
-      document.addEventListener("keydown", (e) => {
-        if (e.key === "Escape") toggleUpdateModal(false);
-      });
 
       function formatPlaytime(ticks) {
         return ticks ? `${Math.floor(ticks / 20 / 3600)}h` : "0h";
@@ -676,153 +548,59 @@
         }, 2000);
       }
 
-      function formatAdvName(adv) {
-        return adv
-          .replace("minecraft:", "")
-          .split("/")
-          .pop()
-          .replace(/_/g, " ")
-          .replace(/\b\w/g, (l) => l.toUpperCase());
-      }
-
       function createPlayerCard(player) {
         const isOnline = onlinePlayerNames.includes(player.name);
+        const isSlayer = DRAGON_SLAYERS.includes(player.name);
         const avatarUrl = `https://mc-heads.net/avatar/${player.uuid}/64`;
         const diet = getDietInfo(player.diet);
-        const pigDist = player.pig_distance_cm
-          ? formatDistance(player.pig_distance_cm)
-          : null;
-        const boatDist = player.boat_distance_cm
-          ? formatDistance(player.boat_distance_cm)
-          : null;
-        const bells = player.bell_rings ? player.bell_rings : null;
 
         const advList =
-          player.advancements && player.advancements.length > 0
+          player.advancements?.length > 0
             ? player.advancements
                 .map(
                   (adv) =>
-                    `<li class="py-1 border-b border-white/5 last:border-0">${formatAdvName(
-                      adv
-                    )}</li>`
+                    `<li class="py-1 border-b border-white/5 last:border-0">${adv.replace(/_/g, " ").split("/").pop()}</li>`,
                 )
                 .join("")
             : '<li class="text-slate-500 italic py-2 text-center">No advancements yet</li>';
 
         return `
-          <div class="bg-slate-800 rounded-xl border ${
-            isOnline
-              ? "border-lime-500 shadow-[0_0_15px_rgba(132,204,22,0.15)]"
-              : "border-slate-700"
-          } p-5 card-hover relative flex flex-col h-full">
+          <div class="bg-slate-800 rounded-xl border ${isOnline ? "border-lime-500 shadow-[0_0_15px_rgba(132,204,22,0.15)]" : "border-slate-700"} p-5 card-hover relative flex flex-col h-full">
             <div class="flex items-start justify-between mb-4">
               <div class="flex items-center gap-3">
                 <div class="relative">
-                  <img src="${avatarUrl}" class="w-12 h-12 rounded-lg bg-slate-900 border border-slate-600 ${
-          isOnline ? "avatar-online" : ""
-        }">
-                  ${
-                    isOnline
-                      ? '<span class="absolute -top-1 -right-1 w-3 h-3 bg-lime-500 border-2 border-slate-800 rounded-full"></span>'
-                      : ""
-                  }
+                  <img src="${avatarUrl}" class="w-12 h-12 rounded-lg bg-slate-900 border border-slate-600 ${isOnline ? "avatar-online" : ""} ${isSlayer ? "avatar-slayer" : ""}">
+                  ${isOnline ? '<span class="absolute -top-1 -right-1 w-3 h-3 bg-lime-500 border-2 border-slate-800 rounded-full"></span>' : ""}
                 </div>
                 <div>
-                  <div class="flex items-center gap-2">
-                    <h3 class="text-white font-bold text-lg leading-tight">${
-                      player.name
-                    }</h3>
-                    ${
-                      isOnline
-                        ? '<span class="text-[10px] text-lime-400 online-text-glimmer">ONLINE</span>'
-                        : ""
-                    }
+                  <div class="flex items-center gap-1.5">
+                    <h3 class="text-white font-bold text-lg leading-tight">${player.name}</h3>
+                    ${isSlayer ? '<i class="fa-solid fa-crown text-yellow-500 text-[10px]" title="Dragon Slayer"></i>' : ""}
+                    ${isOnline ? '<span class="text-[10px] text-lime-400 online-text-glimmer ml-1">ONLINE</span>' : ""}
                   </div>
-                  <div class="mt-1"><span class="diet-badge ${
-                    diet.class
-                  }"><i class="fa-solid ${diet.icon} mr-1"></i>${
-          diet.text
-        }</span></div>
+                  <div class="mt-1 flex items-center gap-2">
+                    <span class="diet-badge ${diet.class}"><i class="fa-solid ${diet.icon} mr-1"></i>${diet.text}</span>
+                    ${isSlayer ? '<span class="text-[9px] uppercase font-bold text-fuchsia-400/80 tracking-widest">Slayer</span>' : ""}
+                  </div>
                 </div>
               </div>
             </div>
             <div class="grid grid-cols-2 gap-2 mb-4">
-              <div class="stat-pill" title="Playtime"><i class="fa-regular fa-clock text-lime-500 w-4"></i><span class="font-mono font-bold text-white">${formatPlaytime(
-                player.playtime
-              )}</span></div>
-              <div class="stat-pill" title="Walked"><i class="fa-solid fa-shoe-prints text-blue-400 w-4"></i><span class="font-mono font-bold text-white">${formatDistance(
-                player.distance_cm
-              )}</span></div>
-              <div class="stat-pill" title="Deaths"><i class="fa-solid fa-skull text-red-500 w-4"></i><span class="font-mono font-bold text-white">${
-                player.deaths
-              }</span></div>
-              <div class="stat-pill group relative cursor-help" title="Click or hover to see list">
+              <div class="stat-pill" title="Playtime"><i class="fa-regular fa-clock text-lime-500 w-4"></i><span class="font-mono font-bold text-white">${formatPlaytime(player.playtime)}</span></div>
+              <div class="stat-pill" title="Walked"><i class="fa-solid fa-shoe-prints text-blue-400 w-4"></i><span class="font-mono font-bold text-white">${formatDistance(player.distance_cm)}</span></div>
+              <div class="stat-pill" title="Deaths"><i class="fa-solid fa-skull text-red-500 w-4"></i><span class="font-mono font-bold text-white">${player.deaths}</span></div>
+              <div class="stat-pill group relative cursor-help" title="Advancements">
                 <i class="fa-solid fa-trophy text-yellow-500 w-4"></i>
-                <span class="font-mono font-bold text-white">${
-                  player.advancements?.length ?? 0
-                }/125</span>
+                <span class="font-mono font-bold text-white">${player.advancements?.length ?? 0}/125</span>
                 <div class="absolute bottom-[80%] left-1/2 -translate-x-1/2 pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-[60]">
                   <div class="w-56 max-h-64 overflow-y-auto bg-slate-900 border border-slate-600 rounded-lg p-3 shadow-2xl adv-scrollbar">
-                    <div class="text-[10px] uppercase font-black text-yellow-500 mb-2 pb-1 border-b border-yellow-500/20 flex justify-between">
-                      <span>Advancements</span>
-                      <span>${player.advancements?.length ?? 0}</span>
-                    </div>
                     <ul class="text-[10px] text-slate-300 space-y-0.5 list-none">${advList}</ul>
                   </div>
-                  <div class="absolute bottom-[2px] left-1/2 -translate-x-1/2 w-3 h-3 bg-slate-900 border-r border-b border-slate-600 rotate-45 z-[-1]"></div>
                 </div>
               </div>
             </div>
-            <div class="mt-auto pt-3 border-t border-slate-700/50 flex gap-4 text-xs text-slate-400">
-                ${
-                  pigDist
-                    ? `<div class="flex items-center gap-1.5"><i class="fa-solid fa-paw text-pink-400"></i> ${pigDist}</div>`
-                    : ""
-                }
-                ${
-                  boatDist
-                    ? `<div class="flex items-center gap-1.5"><i class="fa-solid fa-ship text-cyan-400"></i> ${boatDist}</div>`
-                    : ""
-                }
-                ${
-                  bells
-                    ? `<div class="flex items-center gap-1.5"><i class="fa-solid fa-bell text-yellow-400"></i> ${bells}</div>`
-                    : ""
-                }
-            </div>
           </div>
         `;
-      }
-
-      function updateRecords(players) {
-        const findChamp = (key) => {
-          const sorted = [...players].sort(
-            (a, b) => (b[key] || 0) - (a[key] || 0)
-          );
-          const top = sorted[0];
-          return top && (top[key] || 0) > 0 ? top : null;
-        };
-        const setRecord = (id, champ, formatFn) => {
-          const el = document.getElementById(id);
-          if (champ) {
-            el.querySelector(".record-name").innerText = champ.name;
-            el.querySelector(".record-value").innerText = formatFn(champ);
-          } else {
-            el.querySelector(".record-name").innerText = "No Record";
-            el.querySelector(".record-value").innerText = "-";
-          }
-        };
-        setRecord("record-pig", findChamp("pig_distance_cm"), (p) =>
-          formatDistance(p.pig_distance_cm)
-        );
-        setRecord("record-boat", findChamp("boat_distance_cm"), (p) =>
-          formatDistance(p.boat_distance_cm)
-        );
-        setRecord(
-          "record-bell",
-          findChamp("bell_rings"),
-          (p) => p.bell_rings + " rings"
-        );
       }
 
       async function fetchStats() {
@@ -843,11 +621,10 @@
             (a, b) =>
               (onlinePlayerNames.includes(b.name) ? 1 : 0) -
                 (onlinePlayerNames.includes(a.name) ? 1 : 0) ||
-              b.playtime - a.playtime
+              b.playtime - a.playtime,
           );
 
           grid.innerHTML = players.map(createPlayerCard).join("");
-          updateRecords(players);
           document.getElementById("loading").classList.add("hidden");
           grid.classList.remove("hidden");
         } catch (err) {
@@ -859,10 +636,6 @@
       document.addEventListener("DOMContentLoaded", () => {
         fetchStats();
         setInterval(fetchStats, 30000);
-
-        // Start countdown
-        updateCountdown();
-        setInterval(updateCountdown, 1000);
       });
     </script>
   </body>
